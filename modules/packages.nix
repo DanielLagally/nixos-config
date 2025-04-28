@@ -1,14 +1,6 @@
-{ inputs, ... }:
+{ inputs, stable, unstable, ... }:
 
 let
-  unstable = import inputs.nixpkgs {
-    system = "x86_64-linux";
-    config.allowUnfree = true;
-  };
-  stable = import inputs.nixpkgs_stable {
-    system = "x86_64-linux";
-    config.allowUnfree = true;
-  };
   zen_repo = inputs.zen-browser.packages."x86_64-linux";
 in
 {
@@ -21,8 +13,8 @@ in
     unstable.neofetch
     unstable.nil
     (unstable.discord.override {
-      withOpenASAR = true;
-      withVencord = true;
+    #  withOpenASAR = true;
+    #  withVencord = true;
     })
     unstable.anki
     zen_repo.twilight

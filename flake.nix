@@ -2,7 +2,7 @@
   description = "main system config";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
+    nixpkgs_unstable.url = "github:nixos/nixpkgs?ref=nixos-unstable";
     nixpkgs_stable.url = "github:nixos/nixpkgs?ref=nixos-24.11";    
     hyprland.url = "github:hyprwm/Hyprland";
     zen-browser = {
@@ -13,24 +13,29 @@
     };
     rose-pine-hyprcursor = {
       url = "github:ndom91/rose-pine-hyprcursor";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs_unstable";
       inputs.hyprlang.follows = "hyprland/hyprlang";
     };
     musnix  = { url = "github:musnix/musnix"; };
   };
 
-  outputs = { self, nixpkgs, ... } @ inputs: {
-    nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
-      specialArgs = { inherit inputs; };
+  outputs = { self, nixpkgs_stable, nixpkgs_unstable, ... } @ inputs:
+  let
+    unstable = import nixpkgs_unstable {
+      system = "x86_64-linux";
+      config.allowUnfree = true;
+    };
+    stable = import nixpkgs_stable {
+      system = "x86_64-linux";
+      config.allowUnfree = true;
+    };
+  in
+  {
+    nixosConfigurations.nixos = nixpkgs_unstable.lib.nixosSystem {
+      specialArgs = { inherit inputs; inherit stable; inherit unstable; };
       system = builtins.currentSystem or "x86_64-linux";
       modules = [
-        ./hardware-configuration.nix
-        ./configuration.nix
-        ./modules/packages.nix
-        ./modules/nvidia.nix
-        ./modules/hyprland.nix
-        ./modules/steam.nix
-        inputs.musnix.nixosModules.musnix
+        ./current_system/configuration.nix
       ];
     };
   };

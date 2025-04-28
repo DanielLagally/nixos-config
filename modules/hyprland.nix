@@ -1,11 +1,6 @@
-{ inputs, pkgs, system,  ... }:
+{ inputs, pkgs, system, unstable,  ... }:
 
 let
-  unstable = import inputs.nixpkgs {
-    system = "x86_64-linux";
-    config.allowUnfree = true;
-  };
-
   rose-pine = inputs.rose-pine-hyprcursor.packages."x86_64-linux";
   system = "x86_64-linux";
 in
@@ -47,7 +42,6 @@ in
   ];
   
   environment.systemPackages =  [
-    unstable.kitty
     unstable.waybar
     unstable.rofi-wayland
     unstable.dunst

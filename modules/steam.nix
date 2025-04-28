@@ -1,11 +1,5 @@
 {inputs, ...}:
 
-let
-  unstable = import inputs.nixpkgs {
-    system = "x86_64-linux";
-    config.allowUnfree = true;
-  };
-in
 {
   programs.steam = {
     enable = true;
