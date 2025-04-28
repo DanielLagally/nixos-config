@@ -1,8 +1,7 @@
-{ inputs, pkgs, system, unstable,  ... }:
+{ inputs, system, unstable,  ... }:
 
 let
   rose-pine = inputs.rose-pine-hyprcursor.packages."x86_64-linux";
-  system = "x86_64-linux";
 in
 {
 # enable opengl
@@ -29,7 +28,7 @@ in
   # portals
   xdg.portal = {
     enable = true;
-    extraPortals = [ pkgs.xdg-desktop-portal-gtk ]; # gtk or nvidia?
+    extraPortals = [ unstable.xdg-desktop-portal-gtk ]; # gtk or nvidia?
   };
 
   # fix waybar not displaying hyprland workspaces
@@ -42,6 +41,7 @@ in
   ];
   
   environment.systemPackages =  [
+    rose-pine.default
     unstable.waybar
     unstable.rofi-wayland
     unstable.dunst
@@ -51,9 +51,9 @@ in
     unstable.hyprcursor
     unstable.hyprshot
     unstable.rose-pine-cursor
-    rose-pine.default
     unstable.nwg-look
     unstable.playerctl
     unstable.wl-clipboard
+    unstable.wallust
   ];
 }

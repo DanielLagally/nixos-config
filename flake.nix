@@ -21,22 +21,27 @@
 
   outputs = { self, nixpkgs_stable, nixpkgs_unstable, ... } @ inputs:
   let
+    system = builtins.currentSystem or "x86_64-linux";
+    #hostname = builtins.replaceStrings ["\n"] [""] (builtins.readFile "/etc/hostname");
     unstable = import nixpkgs_unstable {
-      system = "x86_64-linux";
+      inherit system;
       config.allowUnfree = true;
     };
     stable = import nixpkgs_stable {
-      system = "x86_64-linux";
+      inherit system;
       config.allowUnfree = true;
     };
   in
   {
-    nixosConfigurations.nixos = nixpkgs_unstable.lib.nixosSystem {
-      specialArgs = { inherit inputs; inherit stable; inherit unstable; };
-      system = builtins.currentSystem or "x86_64-linux";
+    nixosConfigurations.tower = nixpkgs_unstable.lib.nixosSystem {
+      specialArgs = { inherit inputs; inherit stable; inherit unstable; inherit system; };
+      inherit system;
       modules = [
-        ./current_system/configuration.nix
+        ./tower/configuration.nix
       ];
     };
+
+    # Default configuration for current machine
+    # defaultPackage.${system} = self.nixosConfigurations.${hostname}.config.system.build.toplevel;
   };
 }

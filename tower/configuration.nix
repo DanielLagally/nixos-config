@@ -5,22 +5,40 @@
 { config, lib, unstable, inputs, ... }:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
+  networking.hostName = "tower";
+
+  imports = [ 
       ./hardware-configuration.nix
-      ./../modules/packages.nix
       ./../modules/nvidia.nix
       ./../modules/hyprland.nix
       ./../modules/steam.nix
       ./../modules/java.nix
+      ./../modules/basics.nix
+      ./../modules/music.nix
       inputs.musnix.nixosModules.musnix
     ];
+
+  environment.systemPackages = [
+    (unstable.discord.override {
+      withOpenASAR = true;
+      withVencord = true;
+    })
+    unstable.anki
+    unstable.prismlauncher
+    unstable.obsidian
+    unstable.shipwright
+  ];
+
+  environment.variables = {
+    EDITOR = "hx";
+  };
+
+  nixpkgs.config.allowUnfree = true;
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
@@ -98,9 +116,6 @@
     packages = with unstable; [];
   };
 
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
-
   # enable flakes
   nix = {
     package = unstable.nix;
@@ -109,10 +124,6 @@
       substituters = [ "https://hyprland.cachix.org" ];
       trusted-public-keys = ["hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="];
     };
-  };
-
-  environment.variables = {
-    EDITOR = "hx";
   };
 
   powerManagement.cpuFreqGovernor = "performance";
