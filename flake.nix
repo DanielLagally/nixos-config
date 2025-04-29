@@ -40,6 +40,13 @@
         ./tower/configuration.nix
       ];
     };
+    nixosConfigurations.think = nixpkgs_unstable.lib.nixosSystem {
+      specialArgs = { inherit inputs; inherit stable; inherit unstable; inherit system; };
+      inherit system;
+      modules = [
+        ./think/configuration.nix
+      ];
+    };      
 
     # Default configuration for current machine
     # defaultPackage.${system} = self.nixosConfigurations.${hostname}.config.system.build.toplevel;

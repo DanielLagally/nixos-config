@@ -2,43 +2,29 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, lib, unstable, inputs, ... }:
+{ config, pkgs, stable, unstable, ... }:
 
 {
-  networking.hostName = "tower";
-
-  imports = [ 
+  imports =
+    [
       ./hardware-configuration.nix
-      ./../modules/nvidia.nix
       ./../modules/hyprland.nix
-      ./../modules/steam.nix
-      ./../modules/java.nix
       ./../modules/basics.nix
-      ./../modules/music.nix
-      inputs.musnix.nixosModules.musnix
+      ./../modules/java.nix
     ];
 
   environment.systemPackages = [
-    (unstable.discord.override {
-      withOpenASAR = true;
-      withVencord = true;
-    })
-    unstable.anki
-    unstable.prismlauncher
+    unstable.git
+    unstable.gh
+    unstable.discord
     unstable.obsidian
-    unstable.shipwright
   ];
-
-  environment.variables = {
-    EDITOR = "hx";
-  };
-
-  nixpkgs.config.allowUnfree = true;
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
+  networking.hostName = "think"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
@@ -48,40 +34,7 @@
   # Enable networking
   networking.networkmanager.enable = true;
 
-  # audio  
-  musnix.enable = true;
-  musnix.rtcqs.enable = true;
-
-  security.rtkit.enable = true;
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-  };
-
-#  security.pam.loginLimits = [
-#    { domain = "@audio"; item = "memlock"; type = "hard"  ; value = "unlimited"; }
-#    { domain = "@audio"; item = "rtprio" ; type = "hard"  ; value = "99"       ; }
-#    { domain = "@audio"; item = "nofile" ; type = "soft"  ; value = "99999"    ; }
-#    { domain = "@audio"; item = "nofile" ; type = "hard"  ; value = "99999"    ; }
-#  ];
-
-  services.udev.extraRules = ''
-    KERNEL=="rtc0", GROUP="audio"
-    KERNEL=="hpet", GROUP="audio"
-  '';
-
-  fonts = {
-    enableDefaultPackages = true;
-
-    packages = with unstable; [
-      noto-fonts-cjk-sans
-      font-awesome
-    ];
-  };  
-
-  # timezones
+  # Set your time zone.
   time.timeZone = "Europe/Berlin";
 
   # Select internationalisation properties.
@@ -112,28 +65,28 @@
   users.users.daniel = {
     isNormalUser = true;
     description = "daniel";
-    extraGroups = [ "networkmanager" "wheel" "audio" ];
-    packages = with unstable; [];
+    extraGroups = [ "networkmanager" "wheel" ];
+    packages = with pkgs; [];
   };
 
-  # enable flakes
-  nix = {
-    package = unstable.nix;
-    settings = {
-      experimental-features = [ "nix-command" "flakes" ];
-      substituters = [ "https://hyprland.cachix.org" ];
-      trusted-public-keys = ["hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="];
-    };
+  # Allow unfree packages
+  nixpkgs.config.allowUnfree = true;
+
+  fonts = {
+    enableDefaultPackages = true;
+
+    packages = with unstable; [
+      noto-fonts-cjk-sans
+      font-awesome
+    ];
   };
-
-  powerManagement.cpuFreqGovernor = "performance";
-
+  
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
   # programs.gnupg.agent = {
-    # enable = true;
-    # enableSSHSupport = true;
+  #   enable = true;
+  #   enableSSHSupport = true;
   # };
 
   # List services that you want to enable:
