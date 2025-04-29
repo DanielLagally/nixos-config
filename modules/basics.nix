@@ -18,5 +18,6 @@ in
     unstable.chromium
     unstable.thunderbird
     zen_repo.twilight
+    unstable.udiskie
   ];
 }

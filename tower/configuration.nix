@@ -138,6 +138,11 @@
 
   # List services that you want to enable:
 
+  # flash drive functionality
+  services.devmon.enable = true;
+  services.gvfs.enable = true;
+  services.udisks2.enable = true;
+
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;
 
