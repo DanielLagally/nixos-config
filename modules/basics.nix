@@ -6,6 +6,8 @@ in
 {
   environment.systemPackages = [
     unstable.helix
+    unstable.jdt-language-server
+    unstable.texlab
     unstable.neofetch
     unstable.nil
     unstable.yazi

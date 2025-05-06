@@ -13,7 +13,7 @@
     nvidiaPersistenced = true;
 
     # enable if issues with sleep
-    powerManagement.enable = false;
+    powerManagement.enable = true;
     powerManagement.finegrained = false;
 
     # open-source driver
@@ -28,4 +28,9 @@
     __GLX_VENDOR_LIBRARY_NAME = "nvidia";
   };
 
+  boot = {
+    initrd.kernelModules = [ "nvidia" "nvidia_modeset" "nvidia_uvm" "nvidia_drm" ];
+    extraModulePackages = [ config.boot.kernelPackages.nvidia_x11 ];
+    kernelParams = [ "nvidia-drm.fbdev=1" ];
+  };
 }
