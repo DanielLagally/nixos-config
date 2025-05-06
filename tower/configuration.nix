@@ -27,7 +27,6 @@
     unstable.prismlauncher
     unstable.obsidian
     unstable.shipwright
-    unstable.glfw
   ];
 
   environment.variables = {
