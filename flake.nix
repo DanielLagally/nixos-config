@@ -38,33 +38,42 @@
     stdenv = unstable.llvmPackages_20.stdenv;
   in
   {
-    nixosConfigurations.tower = nixpkgs_unstable.lib.nixosSystem {
-      specialArgs = { inherit inputs stable unstable system home-manager; };
-      inherit system;
-      modules = [
-        ./tower/configuration.nix
-      ];
+    nixosConfigurations = {
+      tower = nixpkgs_unstable.lib.nixosSystem {
+        specialArgs = { inherit inputs stable unstable system home-manager; };
+        inherit system;
+        modules = [
+          home-manager.nixosModules.home-manager
+          ./tower/configuration.nix
+        ];
+      };
+            
+      think = nixpkgs_unstable.lib.nixosSystem {
+        specialArgs = { inherit inputs stable unstable system home-manager; };
+        inherit system;
+        modules = [
+          home-manager.nixosModules.home-manager
+          ./think/configuration.nix
+        ];
+      };
     };
-    nixosConfigurations.think = nixpkgs_unstable.lib.nixosSystem {
-      specialArgs = { inherit inputs stable unstable system home-manager; };
-      inherit system;
-      modules = [
-        ./think/configuration.nix
-      ];
-    };      
-    devShells.${system}."c" = unstable.mkShell.override {
-      inherit stdenv;
-    } {
-      nativeBuildInputs = [
-        unstable.llvmPackages_20.clang-tools
-        unstable.llvmPackages_20.llvm-manpages
-        unstable.llvmPackages_20.clang-manpages
-        unstable.lldb_20
-        unstable.gnumake
-        unstable.man-pages
-        unstable.man-pages-posix
-        unstable.cmake
-      ];
+
+    devShells.${system} = {
+      c = unstable.mkShell.override { inherit stdenv; } {
+        nativeBuildInputs = [
+          unstable.llvmPackages_20.clang-tools
+          unstable.llvmPackages_20.llvm-manpages
+          unstable.llvmPackages_20.clang-manpages
+          unstable.lldb_20
+          unstable.gnumake
+          unstable.man-pages
+          unstable.man-pages-posix
+          unstable.cmake
+        ];
+      };
+      rust = unstable.mkShell {
+        
+      };
     };
   };
 }

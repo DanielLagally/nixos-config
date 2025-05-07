@@ -16,6 +16,7 @@
       ./../modules/basics.nix
       ./../modules/music.nix
       inputs.musnix.nixosModules.musnix
+      ./../modules/home-modules/common.nix
     ];
 
   environment.systemPackages = [
