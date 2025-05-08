@@ -8,12 +8,12 @@
   networking.hostName = "tower";
 
   imports = [ 
+      ./../modules/basics.nix
       ./hardware-configuration.nix
       ./../modules/nvidia.nix
       ./../modules/hyprland.nix
       ./../modules/steam.nix
       ./../modules/java.nix
-      ./../modules/basics.nix
       ./../modules/music.nix
       inputs.musnix.nixosModules.musnix
       ./../modules/home-modules/common.nix
@@ -29,12 +29,6 @@
     unstable.obsidian
     unstable.shipwright
   ];
-
-  environment.variables = {
-    EDITOR = "hx";
-  };
-
-  nixpkgs.config.allowUnfree = true;
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -115,16 +109,6 @@
     description = "daniel";
     extraGroups = [ "networkmanager" "wheel" "audio" ];
     packages = with unstable; [];
-  };
-
-  # enable flakes
-  nix = {
-    package = unstable.nix;
-    settings = {
-      experimental-features = [ "nix-command" "flakes" ];
-      substituters = [ "https://hyprland.cachix.org" ];
-      trusted-public-keys = ["hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="];
-    };
   };
 
   powerManagement.cpuFreqGovernor = "performance";

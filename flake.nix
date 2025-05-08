@@ -8,9 +8,10 @@
       url =  "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs_unstable";
     };
+    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     hyprland = {
       url = "github:hyprwm/Hyprland";
-      inputs.nixpkgs.follows = "nixpkgs_unstable";
+      # inputs.nixpkgs.follows = "nixpkgs_unstable";
     };
     zen-browser = {
       url = "github:0xc000022070/zen-browser-flake";
@@ -24,7 +25,7 @@
     musnix  = { url = "github:musnix/musnix"; };
   };
 
-  outputs = { self, nixpkgs_stable, nixpkgs_unstable, home-manager, ... } @ inputs:
+  outputs = { self, nixpkgs_stable, nixpkgs_unstable, home-manager, nixos-hardware, ... } @ inputs:
   let
     system = builtins.currentSystem or "x86_64-linux";
     unstable = import nixpkgs_unstable {
@@ -53,6 +54,7 @@
         inherit system;
         modules = [
           home-manager.nixosModules.home-manager
+          nixos-hardware.nixosModules.lenovo-thinkpad-t480
           ./think/configuration.nix
         ];
       };

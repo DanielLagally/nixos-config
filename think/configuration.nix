@@ -7,9 +7,9 @@
 {
   imports =
     [
+      ./../modules/basics.nix
       ./hardware-configuration.nix
       ./../modules/hyprland.nix
-      ./../modules/basics.nix
       ./../modules/java.nix
     ];
 
@@ -19,6 +19,8 @@
     unstable.discord
     unstable.obsidian
   ];
+
+  powerManagement.cpuFreqGovernor = "ondemand";
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -69,9 +71,6 @@
     packages = with pkgs; [];
   };
 
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
-
   fonts = {
     enableDefaultPackages = true;
 
@@ -80,7 +79,7 @@
       font-awesome
     ];
   };
-  
+
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
