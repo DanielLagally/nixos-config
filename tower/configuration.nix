@@ -14,16 +14,18 @@
       ./../modules/hyprland.nix
       ./../modules/steam.nix
       ./../modules/java.nix
+      ./../modules/python.nix
       ./../modules/music.nix
       inputs.musnix.nixosModules.musnix
       ./../modules/home-modules/common.nix
     ];
 
   environment.systemPackages = [
-    (unstable.discord.override {
-      withOpenASAR = true;
-      withVencord = true;
-    })
+    # (unstable.discord.override {
+    #   withOpenASAR = true;
+    #   withVencord = true;
+    # })
+    unstable.vesktop
     unstable.anki
     unstable.prismlauncher
     unstable.obsidian

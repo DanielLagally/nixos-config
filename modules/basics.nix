@@ -24,6 +24,8 @@ in
     unstable.helix
     unstable.jdt-language-server
     unstable.texlab
+    unstable.ocamlPackages.ocaml-lsp
+    unstable.ocaml
     unstable.neofetch
     unstable.nil
     unstable.yazi
@@ -38,4 +40,6 @@ in
     zen_repo.twilight
     unstable.udiskie
   ];
+
+  programs.nix-ld.enable = true;
 }
