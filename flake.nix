@@ -81,7 +81,7 @@
           unstable.man-pages-posix
           unstable.cmake
           unstable.valgrind
-          pkgs.systemc
+          unstable.systemc
         ];
       };
       rust = unstable.mkShell {
