@@ -99,6 +99,12 @@
           unstable.ocamlPackages.earlybird
         ];
       };
+      python = unstable.mkShell {
+        nativeBuildInputs = [
+          unstable.python312
+          unstable.python312Packages.pip
+        ];
+      };
     };
   };
 }
