@@ -45,7 +45,8 @@
      }) {
       inherit system;
     };
-    stdenv = unstable.llvmPackages_20.stdenv;
+    stdenv = unstable.gccStdenv;
+    llvm_env = unstable.llvmPackages_20.stdenv;
   in
   {
     nixosConfigurations = {
@@ -70,7 +71,7 @@
     };
 
     devShells.${system} = {
-      c = unstable.mkShell.override { inherit stdenv; } {
+      c = unstable.mkShell.override { stdenv = llvm_env; } {
         nativeBuildInputs = [
           unstable.llvmPackages_20.clang-tools
           unstable.llvmPackages_20.llvm-manpages
@@ -86,6 +87,17 @@
       };
       rust = unstable.mkShell {
         
+      };
+      ocaml = unstable.mkShell.override {
+        inherit stdenv ;
+      } {
+        nativeBuildInputs = [
+          unstable.ocamlPackages.ocaml-lsp
+          unstable.ocaml
+          unstable.ocamlformat_0_26_1
+          unstable.dune_3
+          unstable.ocamlPackages.earlybird
+        ];
       };
     };
   };
