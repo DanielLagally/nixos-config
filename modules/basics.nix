@@ -26,6 +26,7 @@ in
     unstable.texlab
     unstable.neofetch
     unstable.nil
+    unstable.ruff
     unstable.yazi
     unstable.ghostty
     unstable.htop
