@@ -2,7 +2,7 @@
 
 {
   environment.systemPackages = [
-    unstable.python313
+    unstable.python312
     unstable.ruff
   ];
 }
