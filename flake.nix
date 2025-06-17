@@ -97,6 +97,7 @@
           unstable.ocamlformat_0_26_1
           unstable.dune_3
           unstable.ocamlPackages.earlybird
+          unstable.ocamlPackages.utop
         ];
       };
       python = unstable.mkShell {
