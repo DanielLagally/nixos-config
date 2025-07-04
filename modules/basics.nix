@@ -38,6 +38,7 @@ in
     unstable.thunderbird
     zen_repo.twilight
     unstable.udiskie
+    unstable.zoxide
   ];
 
   programs.nix-ld.enable = true;
