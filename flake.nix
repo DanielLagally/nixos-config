@@ -76,6 +76,7 @@
           unstable.llvmPackages_20.clang-tools
           unstable.llvmPackages_20.llvm-manpages
           unstable.llvmPackages_20.clang-manpages
+          unstable.llvmPackages_20.libllvm
           unstable.lldb_20
           unstable.gnumake
           unstable.man-pages
