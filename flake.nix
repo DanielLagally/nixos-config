@@ -107,6 +107,44 @@
           unstable.python312Packages.pip
         ];
       };
+      java = unstable.mkShell {
+        nativeBuildInputs = [
+          unstable.jetbrains.idea-ultimate
+          unstable.jetbrains.jdk-no-jcef-17
+          unstable.protobuf
+          unstable.gradle
+          unstable.bazel_7
+        ];
+      };
+      eist = unstable.mkShell.override {
+        stdenv = llvm_env ;
+      } {
+        nativeBuildInputs = [
+          # java
+          unstable.jetbrains.idea-ultimate
+          unstable.jetbrains.jdk-no-jcef-17
+          unstable.gradle
+          # python
+          unstable.python312
+          unstable.python312Packages.pip
+          # c
+          unstable.llvmPackages_20.clang-tools
+          unstable.llvmPackages_20.llvm-manpages
+          unstable.llvmPackages_20.clang-manpages
+          unstable.llvmPackages_20.libllvm
+          unstable.lldb_20
+          unstable.gnumake
+          unstable.man-pages
+          unstable.man-pages-posix
+          unstable.cmake
+          unstable.valgrind
+          unstable.systemc
+          # other garbage
+          unstable.bazel_7
+          unstable.protobuf
+          unstable.docker
+        ];
+      };
     };
   };
 }
