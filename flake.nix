@@ -122,7 +122,11 @@
         nativeBuildInputs = [
           # java
           unstable.jetbrains.idea-ultimate
-          unstable.jetbrains.jdk-no-jcef-17
+          (unstable.jdk17.override {enableJavaFX = true;})
+          # unstable.javaPackages.openjfx17
+          # unstable.openjfx
+          # unstable.gtk3
+          # unstable.glib
           unstable.gradle
           # python
           unstable.python312
@@ -142,8 +146,11 @@
           # other garbage
           unstable.bazel_7
           unstable.protobuf
-          unstable.docker
+          # unstable.podman
+          # unstable.podman-compose
         ];
+
+        LD_LIBRARY_PATH="${unstable.gtk3}/lib:${unstable.glib}/lib";
       };
     };
   };
