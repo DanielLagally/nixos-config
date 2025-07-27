@@ -10,7 +10,7 @@
       ./../modules/basics.nix
       ./hardware-configuration.nix
       ./../modules/hyprland.nix
-      ./../modules/java.nix
+      # ./../modules/java.nix
     ];
 
   environment.systemPackages = [
