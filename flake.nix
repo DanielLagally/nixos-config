@@ -146,12 +146,20 @@
           # other garbage
           unstable.bazel_7
           unstable.protobuf
-          # unstable.podman
-          # unstable.podman-compose
+          unstable.podman
+          unstable.podman-compose
         ];
 
+        venvDir = "~/Dev/EIST/.venv";
+        shellHook = ''
+                    if [ ! -d $venvDir ]; then
+                      python -m venv $venvDir
+                    fi
+                    source $venvDir/bin/activate
+                  '';
+
         LD_LIBRARY_PATH="${unstable.gtk3}/lib:${unstable.glib}/lib";
-      };
+        };
     };
   };
 }
