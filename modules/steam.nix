@@ -16,6 +16,14 @@
   users.users.daniel = {
     extraGroups = [ "gamemode" ];
   };
+
+  environment.systemPackages = [
+    unstable.wootility
+  ];
+
+  services.udev.packages = [
+    unstable.wooting-udev-rules
+  ];
   
   programs.gamemode.enable = true;
 }
