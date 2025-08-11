@@ -150,7 +150,7 @@
           unstable.podman-compose
         ];
 
-        venvDir = "~/Dev/EIST/.venv";
+        venvDir = "/home/daniel/Dev/EIST/.venv";
         shellHook = ''
                     if [ ! -d $venvDir ]; then
                       python -m venv $venvDir
