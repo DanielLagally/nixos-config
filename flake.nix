@@ -36,15 +36,6 @@
       inherit system;
       config.allowUnfree = true;
     };
-      pkgs = import (builtins.fetchGit {
-         # Descriptive name to make the store path easier to identify
-         name = "my-old-revision";
-         url = "https://github.com/NixOS/nixpkgs/";
-         ref = "refs/heads/nixpkgs-unstable";
-         rev = "0c19708cf035f50d28eb4b2b8e7a79d4dc52f6bb";
-     }) {
-      inherit system;
-    };
     stdenv = unstable.gccStdenv;
     llvm_env = unstable.llvmPackages_20.stdenv;
   in
@@ -86,8 +77,15 @@
           unstable.systemc
         ];
       };
-      rust = unstable.mkShell {
-        
+      rust = unstable.mkShell.override { stdenv = llvm_env; } {
+        nativeBuildInputs = [
+          unstable.lldb_20
+          unstable.rust-analyzer
+          unstable.rustc
+          unstable.cargo
+          unstable.clippy
+          unstable.rustfmt
+        ];
       };
       ocaml = unstable.mkShell.override {
         inherit stdenv ;
@@ -123,10 +121,6 @@
           # java
           unstable.jetbrains.idea-ultimate
           (unstable.jdk17.override {enableJavaFX = true;})
-          # unstable.javaPackages.openjfx17
-          # unstable.openjfx
-          # unstable.gtk3
-          # unstable.glib
           unstable.gradle
           # python
           unstable.python312
@@ -142,7 +136,6 @@
           unstable.man-pages-posix
           unstable.cmake
           unstable.valgrind
-          unstable.systemc
           # other garbage
           unstable.bazel_7
           unstable.protobuf
@@ -159,7 +152,7 @@
                   '';
 
         LD_LIBRARY_PATH="${unstable.gtk3}/lib:${unstable.glib}/lib";
-        };
+      };
     };
   };
 }
