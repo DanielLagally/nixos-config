@@ -1,6 +1,21 @@
-{ config,  ... }:
-
+{ config, pkgs, ... }:
+let
+  drm_fop_flags_patch = pkgs.fetchpatch {
+    url    = "https://github.com/Binary-Eater/open-gpu-kernel-modules/commit/8ac26d3c66ea88b0f80504bdd1e907658b41609d.patch";
+    sha256 = "0+SfIu3uYNQCf/KXhv4PWvruTVKQSh4bgU1moePhe57U=";
+  };
+in
 {
+  nixpkgs.overlays = [
+    (self: super: {
+      nvidia_x11 = super.nvidia_x11.overrideAttrs (oldAttrs: {
+        latest = oldAttrs.latest.overrideAttrs (drvAttrs: {
+          patches = drvAttrs.patches ++ [ drm_fop_flags_patch ];
+        });
+      });
+    })
+  ];
+
 	hardware.graphics = {
     enable = true;
     enable32Bit = true;
@@ -10,7 +25,7 @@
   services.xserver.videoDrivers = ["nvidia"];
 
   hardware.nvidia = {
-    package = config.boot.kernelPackages.nvidiaPackages.latest;
+    package = config.boot.kernelPackages.nvidiaPackages.beta;
   
     modesetting.enable = true;
     nvidiaPersistenced = true;
