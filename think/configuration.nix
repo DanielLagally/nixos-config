@@ -10,7 +10,6 @@
       ./../modules/basics.nix
       ./hardware-configuration.nix
       ./../modules/hyprland.nix
-      # ./../modules/java.nix
     ];
 
   environment.systemPackages = [
@@ -69,15 +68,6 @@
     description = "daniel";
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [];
-  };
-
-  fonts = {
-    enableDefaultPackages = true;
-
-    packages = with unstable; [
-      noto-fonts-cjk-sans
-      font-awesome
-    ];
   };
 
   # Some programs need SUID wrappers, can be configured further or are

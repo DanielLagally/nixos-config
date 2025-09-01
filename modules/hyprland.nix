@@ -17,7 +17,7 @@ in
     # set the flake package
     package = inputs.hyprland.packages.${system}.hyprland;
     # make sure to also set the portal package, so that they are in sync
-    portalPackage = inputs.hyprland.packages.${system}.xdg-desktop-portal-hyprland;
+    # portalPackage = inputs.hyprland.packages.${system}.xdg-desktop-portal-hyprland;
 
     xwayland.enable = true;
   };
@@ -28,6 +28,7 @@ in
   # portals
   xdg.portal = {
     enable = true;
+    # wlr.enable = true;
     extraPortals = [ unstable.xdg-desktop-portal-gtk ]; # gtk or nvidia?
   };
 
@@ -49,7 +50,7 @@ in
     unstable.hyprpicker
     unstable.hyprpolkitagent
     unstable.hyprcursor
-    unstable.hyprshot
+    unstable.grimblast
     unstable.rose-pine-cursor
     unstable.nwg-look
     unstable.playerctl

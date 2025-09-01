@@ -32,6 +32,11 @@
       inherit system;
       config.allowUnfree = true;
     };
+    unstableWithCuda = import nixpkgs_unstable {
+      inherit system;
+      config.allowUnfree = true;
+      config.cudaSupport = true;
+    };
     stable = import nixpkgs_stable {
       inherit system;
       config.allowUnfree = true;
@@ -42,7 +47,7 @@
   {
     nixosConfigurations = {
       tower = nixpkgs_unstable.lib.nixosSystem {
-        specialArgs = { inherit inputs stable unstable system home-manager; };
+        specialArgs = { inherit inputs stable unstable unstableWithCuda system home-manager; };
         inherit system;
         modules = [
           home-manager.nixosModules.home-manager

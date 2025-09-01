@@ -13,9 +13,8 @@
       ./../modules/nvidia.nix
       ./../modules/hyprland.nix
       ./../modules/steam.nix
-      ./../modules/java.nix
-      ./../modules/python.nix
       ./../modules/music.nix
+      ./../modules/japanese.nix
       inputs.musnix.nixosModules.musnix
       ./../modules/home-modules/common.nix
     ];
@@ -68,15 +67,6 @@
     KERNEL=="rtc0", GROUP="audio"
     KERNEL=="hpet", GROUP="audio"
   '';
-
-  fonts = {
-    enableDefaultPackages = true;
-
-    packages = with unstable; [
-      noto-fonts-cjk-sans
-      font-awesome
-    ];
-  };  
 
   # timezones
   time.timeZone = "Europe/Berlin";
