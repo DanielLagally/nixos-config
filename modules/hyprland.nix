@@ -40,7 +40,11 @@ in
         });
     })
   ];
-  
+
+  programs.bash.shellAliases = {
+    hy = "hyprland";
+  };
+ 
   environment.systemPackages =  [
     rose-pine.default
     unstable.waybar
@@ -56,5 +60,9 @@ in
     unstable.playerctl
     unstable.wl-clipboard
     unstable.wallust
+    unstable.brightnessctl
+    unstable.hyprsunset
+    unstable.hyprlock
+    unstable.hypridle
   ];
 }
