@@ -48,6 +48,9 @@ in
     unstable.neofetch
     unstable.nil
     unstable.ruff
+    unstable.ty
+    unstable.python312Packages.jedi-language-server
+    unstable.python312Packages.python-lsp-server
   ];
 
   programs.nix-ld.enable = true;
@@ -61,4 +64,18 @@ in
       font-awesome
     ] ++ (builtins.filter lib.attrsets.isDerivation (builtins.attrValues unstable.nerd-fonts));
   };  
+
+  # mouse tweaks
+  # expose webusb for scyrox mouse
+  services.udev.extraRules =''
+      KERNEL=="hidraw*", ATTRS{idVendor}=="3554", ATTRS{idProduct}=="f5f6", MODE="0666", TAG+="uaccess"
+      KERNEL=="hidraw*", ATTRS{idVendor}=="3554", ATTRS{idProduct}=="f5f7", MODE="0666", TAG+="uaccess"
+    '';
+
+  # disable libinput's debounce algorithm for all mice
+  environment.etc."libinput/local-overrides.quirks".text = unstable.lib.mkForce ''
+      [Never Debounce]
+      MatchUdevType=mouse
+      ModelBouncingKeys=1
+  '';  
 }
