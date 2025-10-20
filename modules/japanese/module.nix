@@ -11,7 +11,8 @@
       unstable.yt-dlp
       unstableWithCuda.openai-whisper
       # unstableWithCuda.whisperx # actual impossible to build package, need like 300GB of ram and 4 A100s to build this apparently
-      (unstable.callPackage ./../derivations/japanese_vocab/package.nix { })
+      (unstable.callPackage ./packages/japanese_vocab/package.nix { })
+      (import ./scripts/deepl_jp.nix { inherit unstable; })
     ];
 }
 
