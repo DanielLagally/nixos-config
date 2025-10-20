@@ -5,7 +5,7 @@
     nixpkgs_unstable.url = "github:nixos/nixpkgs?ref=nixos-unstable";
     nixpkgs_stable.url = "github:nixos/nixpkgs?ref=nixos-24.11";    
     home-manager = {
-      url =  "github:nix-community/home-manager";
+      url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs_unstable";
     };
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
@@ -22,7 +22,15 @@
       inputs.nixpkgs.follows = "nixpkgs_unstable";
       inputs.hyprlang.follows = "hyprland/hyprlang";
     };
-    musnix  = { url = "github:musnix/musnix"; };
+    musnix = { url = "github:musnix/musnix"; };
+    caelestia-cli = {
+      url = "github:caelestia-dots/cli";
+      inputs.nixpkgs.follows = "nixpkgs_unstable";
+    };
+    caelestia-shell = {
+      url = "github:caelestia-dots/shell";
+      inputs.nixpkgs.follows = "nixpkgs_unstable";
+    };
   };
 
   outputs = { self, nixpkgs_stable, nixpkgs_unstable, home-manager, nixos-hardware, ... } @ inputs:
@@ -47,10 +55,9 @@
   {
     nixosConfigurations = {
       tower = nixpkgs_unstable.lib.nixosSystem {
-        specialArgs = { inherit inputs stable unstable unstableWithCuda system home-manager; };
+        specialArgs = { inherit inputs stable unstable unstableWithCuda system; };
         inherit system;
         modules = [
-          home-manager.nixosModules.home-manager
           ./tower/configuration.nix
         ];
       };
@@ -59,7 +66,6 @@
         specialArgs = { inherit inputs stable unstable system home-manager; };
         inherit system;
         modules = [
-          home-manager.nixosModules.home-manager
           nixos-hardware.nixosModules.lenovo-thinkpad-t480
           ./think/configuration.nix
         ];
@@ -157,6 +163,31 @@
                   '';
 
         LD_LIBRARY_PATH="${unstable.gtk3}/lib:${unstable.glib}/lib";
+      };
+      gbs = unstable.mkShell {
+        nativeBuildInputs = [
+          unstable.gnumake
+          unstable.gdb
+          unstable.valgrind
+          unstable.man-pages
+          unstable.bash
+          unstable.bash-completion
+        ];
+      };
+      it-sec = unstable.mkShell {
+        nativeBuildInputs = [
+          (unstable.python3.withPackages (py-pkgs: with py-pkgs; [
+            pip
+          ]))
+          unstable.basedpyright
+          unstable.ruff
+        ];
+        shellHook = ''
+                    if [ ! -d venv ]; then
+                      python -m venv --system-site-packages venv
+                    fi
+                    source venv/bin/activate
+                  '';
       };
     };
   };

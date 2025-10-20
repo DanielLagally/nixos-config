@@ -4,10 +4,10 @@ let
   zen_repo = inputs.zen-browser.packages."x86_64-linux";
 in
 {
-  # enable flakes
   nix = {
     package = unstable.nix;
     settings = {
+      # enable flakes
       experimental-features = [ "nix-command" "flakes" ];
       substituters = [
         "https://hyprland.cachix.org"
@@ -39,8 +39,10 @@ in
     unstable.thunderbird
     zen_repo.twilight
     unstable.udiskie
-    unstable.zoxide
+    # unstable.zoxide
     unstable.altus
+    unstable.tree
+    unstable.video-trimmer
 
     # language servers
     unstable.jdt-language-server
@@ -53,8 +55,30 @@ in
     unstable.python312Packages.python-lsp-server
   ];
 
-  programs.nix-ld.enable = true;
-  programs.direnv.enable = true;
+  users.defaultUserShell = unstable.fish;
+  
+  programs = {
+    nix-ld.enable = true;
+    direnv = {
+      enable = true;
+      enableFishIntegration = true;
+      enableBashIntegration = true;
+    };
+    zoxide = {
+      enable = true;
+      enableFishIntegration = true;
+      enableBashIntegration = true;
+    };
+    fish.enable = true;
+    bash.enable = false;
+    foot = {
+      enable = true;
+      enableFishIntegration = true;
+      enableBashIntegration = true;
+    };
+  };
+
+  qt.style = "adwaita-dark";
 
   fonts = {
     enableDefaultPackages = true;

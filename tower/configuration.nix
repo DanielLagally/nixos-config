@@ -3,7 +3,6 @@
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
 { config, lib, unstable, inputs, ... }:
-
 {
   networking.hostName = "tower";
 
@@ -14,22 +13,38 @@
       ./../modules/hyprland.nix
       ./../modules/steam.nix
       ./../modules/music.nix
-      ./../modules/japanese.nix
+      ./../modules/japanese/module.nix
       inputs.musnix.nixosModules.musnix
-      ./../modules/home-modules/common.nix
+      # ./../modules/home-modules/common.nix
+      inputs.home-manager.nixosModules.home-manager
     ];
 
   environment.systemPackages = [
-    # (unstable.discord.override {
-    #   withOpenASAR = true;
-    #   withVencord = true;
-    # })
+    (unstable.discord.override {
+      # withOpenASAR = true;
+      # withVencord = true;
+    })
+    unstable.equibop
+    unstable.legcord
     unstable.vesktop
     unstable.anki
     unstable.prismlauncher
     unstable.obsidian
     unstable.shipwright
   ];
+
+  # home-manager = {
+  #   users.daniel = {
+  #     home = {
+  #       stateVersion = "25.11";
+  #     };
+  #     imports = [ inputs.caelestia-shell.homeManagerModules.default ];
+  #     programs.caelestia = {
+  #       enable = true;
+  #       cli.enable = true;
+  #     };
+  #   };
+  # };
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
