@@ -2,6 +2,7 @@
 
 let
   rose-pine = inputs.rose-pine-hyprcursor.packages."x86_64-linux";
+  caelestia-pkg = inputs.caelestia-cli.packages.${system}.with-shell;
 in
 {
 # enable opengl
@@ -32,12 +33,21 @@ in
     extraPortals = [ unstable.xdg-desktop-portal-gtk ]; # gtk or nvidia?
   };
 
+  xdg.terminal-exec = {
+    enable = true;
+    settings = {
+      default = [
+        "foot.desktop"
+      ];
+    };
+  };
+
   # fix waybar not displaying hyprland workspaces
   nixpkgs.overlays = [
     (self: super: {
-        waybar = super.waybar.overrideAttrs (oldAttrs: {
-            mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ];
-        });
+      waybar = super.waybar.overrideAttrs (oldAttrs: {
+        mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ];
+      });
     })
   ];
 
@@ -48,7 +58,7 @@ in
   environment.systemPackages =  [
     rose-pine.default
     unstable.waybar
-    unstable.rofi-wayland
+    unstable.rofi
     unstable.dunst
     unstable.hyprpaper
     unstable.hyprpicker
@@ -64,5 +74,20 @@ in
     unstable.hyprsunset
     unstable.hyprlock
     unstable.hypridle
+
+    # caelestia stuff
+    caelestia-pkg
+    unstable.starship
+    unstable.fastfetch
+    unstable.btop
+    unstable.eza
+    unstable.app2unit
+    unstable.jq
+    unstable.papirus-icon-theme
+    unstable.cliphist
+    unstable.inotify-tools
+    unstable.libnotify
+    unstable.trash-cli
+    unstable.quickshell
   ];
 }
