@@ -90,4 +90,5 @@ in
     unstable.trash-cli
     unstable.quickshell
   ];
+  programs.gpu-screen-recorder.enable = true;
 }
