@@ -39,6 +39,7 @@ in
     unstable.thunderbird
     zen_repo.twilight
     unstable.udiskie
+    unstable.unzip
     # unstable.zoxide
     unstable.altus
     unstable.tree
