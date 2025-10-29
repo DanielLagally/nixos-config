@@ -172,7 +172,12 @@
           unstable.man-pages
           unstable.bash
           unstable.bash-completion
+          unstable.clang-tools
+          unstable.libllvm
+          unstable.lldb
         ];
+
+        hardeningDisable = [ "all" ];
       };
       it-sec = unstable.mkShell {
         nativeBuildInputs = [
