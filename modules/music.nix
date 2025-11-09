@@ -9,5 +9,6 @@ in
     unstable.yabridgectl
     unstable.wineWowPackages.staging
     unstable.winetricks
+    unstable.easyeffects
   ];
 }
