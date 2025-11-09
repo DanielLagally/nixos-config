@@ -98,18 +98,6 @@
           unstable.rustfmt
         ];
       };
-      ocaml = unstable.mkShell.override {
-        inherit stdenv ;
-      } {
-        nativeBuildInputs = [
-          unstable.ocamlPackages.ocaml-lsp
-          unstable.ocaml
-          unstable.ocamlformat_0_26_1
-          unstable.dune_3
-          unstable.ocamlPackages.earlybird
-          unstable.ocamlPackages.utop
-        ];
-      };
       python = unstable.mkShell {
         nativeBuildInputs = [
           unstable.python312
@@ -124,75 +112,6 @@
           unstable.gradle
           unstable.bazel_7
         ];
-      };
-      eist = unstable.mkShell.override {
-        stdenv = llvm_env ;
-      } {
-        nativeBuildInputs = [
-          # java
-          unstable.jetbrains.idea-ultimate
-          (unstable.jdk17.override {enableJavaFX = true;})
-          unstable.gradle
-          # python
-          unstable.python312
-          unstable.python312Packages.pip
-          # c
-          unstable.llvmPackages_20.clang-tools
-          unstable.llvmPackages_20.llvm-manpages
-          unstable.llvmPackages_20.clang-manpages
-          unstable.llvmPackages_20.libllvm
-          unstable.lldb_20
-          unstable.gnumake
-          unstable.man-pages
-          unstable.man-pages-posix
-          unstable.cmake
-          unstable.valgrind
-          # other garbage
-          unstable.bazel_7
-          unstable.protobuf
-          unstable.podman
-          unstable.podman-compose
-        ];
-
-        venvDir = "/home/daniel/Dev/EIST/.venv";
-        shellHook = ''
-                    if [ ! -d $venvDir ]; then
-                      python -m venv $venvDir
-                    fi
-                    source $venvDir/bin/activate
-                  '';
-
-        LD_LIBRARY_PATH="${unstable.gtk3}/lib:${unstable.glib}/lib";
-      };
-      gbs = unstable.mkShell {
-        nativeBuildInputs = [
-          unstable.gnumake
-          unstable.gdb
-          unstable.valgrind
-          unstable.man-pages
-          unstable.bash
-          unstable.bash-completion
-          unstable.clang-tools
-          unstable.libllvm
-          unstable.lldb
-        ];
-
-        hardeningDisable = [ "all" ];
-      };
-      it-sec = unstable.mkShell {
-        nativeBuildInputs = [
-          (unstable.python3.withPackages (py-pkgs: with py-pkgs; [
-            pip
-          ]))
-          unstable.basedpyright
-          unstable.ruff
-        ];
-        shellHook = ''
-                    if [ ! -d venv ]; then
-                      python -m venv --system-site-packages venv
-                    fi
-                    source venv/bin/activate
-                  '';
       };
     };
   };
