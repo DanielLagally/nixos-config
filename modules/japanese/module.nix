@@ -14,6 +14,28 @@
       (unstable.callPackage ./packages/japanese_vocab/package.nix { })
       (import ./scripts/deepl_jp.nix { inherit unstable; })
     ];
+
+    i18n = {
+      inputMethod = {
+        enable = true;
+        type = "fcitx5";
+        fcitx5 = {
+          waylandFrontend = true;
+          addons = [
+            unstable.fcitx5-mozc
+            unstable.fcitx5-gtk
+            unstable.fcitx5-configtool
+          ];
+        };
+      };
+    };
+    
+    environment.variables = {
+      GLFW_IM_MODULE = "fcitx";
+      GTK_IM_MODULE = "fcitx";
+      QT_IM_MODULE = "fcitx";
+      XMODIFIERS="@im=fcitx";
+    };
 }
 
 
