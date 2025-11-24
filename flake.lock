@@ -413,6 +413,52 @@
         "type": "github"
       }
     },
+    "hyprsplit": {
+      "inputs": {
+        "hyprland": [
+          "hyprland"
+        ]
+      },
+      "locked": {
+        "lastModified": 1763430395,
+        "narHash": "sha256-6s8nuPwLP5NKUevLeYYgHirk9RkZhaXtDRXBfrIAibs=",
+        "owner": "shezdy",
+        "repo": "hyprsplit",
+        "rev": "25d42f70bb111299f9721d488b4f351c9f10b4aa",
+        "type": "github"
+      },
+      "original": {
+        "owner": "shezdy",
+        "repo": "hyprsplit",
+        "type": "github"
+      }
+    },
+    "hyprtasking": {
+      "inputs": {
+        "hyprland": [
+          "hyprland"
+        ],
+        "nixpkgs": [
+          "hyprtasking",
+          "hyprland",
+          "nixpkgs"
+        ],
+        "systems": "systems_2"
+      },
+      "locked": {
+        "lastModified": 1763599137,
+        "narHash": "sha256-C7nNhWQ/l1+TYQJlChW+995rzLVb/7n4K+QcRobb4CQ=",
+        "owner": "raybbian",
+        "repo": "hyprtasking",
+        "rev": "17d51c61351201bf4556104fac3c0b8b75a72124",
+        "type": "github"
+      },
+      "original": {
+        "owner": "raybbian",
+        "repo": "hyprtasking",
+        "type": "github"
+      }
+    },
     "hyprutils": {
       "inputs": {
         "nixpkgs": [
@@ -633,6 +679,8 @@
         "caelestia-shell": "caelestia-shell_2",
         "home-manager": "home-manager",
         "hyprland": "hyprland",
+        "hyprsplit": "hyprsplit",
+        "hyprtasking": "hyprtasking",
         "musnix": "musnix",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs_stable": "nixpkgs_stable",
@@ -683,6 +731,21 @@
     },
     "systems_2": {
       "locked": {
+        "lastModified": 1689347949,
+        "narHash": "sha256-12tWmuL2zgBgZkdoB6qXZsgJEH9LR3oUgpaQq2RbI80=",
+        "owner": "nix-systems",
+        "repo": "default-linux",
+        "rev": "31732fcf5e8fea42e59c2488ad31a0e651500f68",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-systems",
+        "repo": "default-linux",
+        "type": "github"
+      }
+    },
+    "systems_3": {
+      "locked": {
         "lastModified": 1681028828,
         "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
         "owner": "nix-systems",
@@ -698,7 +761,7 @@
     },
     "utils": {
       "inputs": {
-        "systems": "systems_2"
+        "systems": "systems_3"
       },
       "locked": {
         "lastModified": 1710146030,

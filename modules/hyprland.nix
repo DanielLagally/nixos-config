@@ -1,10 +1,22 @@
-{ inputs, system, unstable,  ... }:
+{ inputs, system, unstable, home-manager, lib, ... }:
 
 let
   rose-pine = inputs.rose-pine-hyprcursor.packages."x86_64-linux";
   caelestia-pkg = inputs.caelestia-cli.packages.${system}.with-shell;
+  hypr-plugin-dir = unstable.symlinkJoin {
+    name = "hyprland-plugins";
+    paths = [
+      # inputs.hyprtasking.packages.${system}.hyprtasking # appears to be broken, need to update hyprland which breaks caelestia-shell :)
+      inputs.hyprsplit.packages.${system}.hyprsplit
+    ];
+  };
 in
 {
+  # enables upstream hyprland flake
+  imports = [
+    inputs.hyprland.nixosModules.default
+  ];
+
 # enable opengl
   hardware.graphics = {
     enable = true;
@@ -19,37 +31,38 @@ in
     package = inputs.hyprland.packages.${system}.hyprland;
     # make sure to also set the portal package, so that they are in sync
     # portalPackage = inputs.hyprland.packages.${system}.xdg-desktop-portal-hyprland;
+    # option exposed by upstream flake, does not work though
+    # plugins = [
+    #   inputs.split-monitor-workspaces.packages.x86_64-linux.split-monitor-workspaces
+    #   unstable.hyprlandPlugins.hyprexpo
+    #   unstable.hyprlandPlugins.hyprspace
+    #   inputs.hyprland-plugins.packages.x86_64-linux.hyprexpo
+    # ];
 
     xwayland.enable = true;
   };
   programs.xwayland.enable = true;
 
-  environment.sessionVariables.NIXOS_OZONE_WL = "1";
-
-  # portals
-  xdg.portal = {
-    enable = true;
-    # wlr.enable = true;
-    extraPortals = [ unstable.xdg-desktop-portal-gtk ]; # gtk or nvidia?
+  environment.sessionVariables = {
+    NIXOS_OZONE_WL = "1";
+    HYPR_PLUGIN_DIR = hypr-plugin-dir;
   };
 
-  xdg.terminal-exec = {
-    enable = true;
-    settings = {
-      default = [
-        "foot.desktop"
-      ];
-    };
-  };
+  # # portals
+  # xdg.portal = {
+  #   enable = true;
+  #   # wlr.enable = true;
+  #   extraPortals = [ unstable.xdg-desktop-portal-gtk ]; # gtk or nvidia?
+  # };
 
-  # fix waybar not displaying hyprland workspaces
-  nixpkgs.overlays = [
-    (self: super: {
-      waybar = super.waybar.overrideAttrs (oldAttrs: {
-        mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ];
-      });
-    })
-  ];
+  # xdg.terminal-exec = {
+  #   enable = true;
+  #   settings = {
+  #     default = [
+  #       "foot.desktop"
+  #     ];
+  #   };
+  # };
 
   programs.bash.shellAliases = {
     hy = "hyprland";

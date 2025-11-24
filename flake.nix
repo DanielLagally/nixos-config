@@ -13,6 +13,14 @@
       url = "github:hyprwm/Hyprland";
       # inputs.nixpkgs.follows = "nixpkgs_unstable";
     };
+    hyprsplit = {
+      url = "github:shezdy/hyprsplit";
+      inputs.hyprland.follows = "hyprland";
+    };
+    hyprtasking = {
+      url = "github:raybbian/hyprtasking";
+      inputs.hyprland.follows = "hyprland";
+    };
     zen-browser = {
       url = "github:0xc000022070/zen-browser-flake";
       inputs.nixpkgs.follows = "nixpkgs_unstable";
@@ -55,7 +63,7 @@
   {
     nixosConfigurations = {
       tower = nixpkgs_unstable.lib.nixosSystem {
-        specialArgs = { inherit inputs stable unstable unstableWithCuda system; };
+        specialArgs = { inherit inputs stable unstable unstableWithCuda system home-manager; };
         inherit system;
         modules = [
           ./tower/configuration.nix

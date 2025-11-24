@@ -38,12 +38,16 @@
   #     home = {
   #       stateVersion = "25.11";
   #     };
-  #     imports = [ inputs.caelestia-shell.homeManagerModules.default ];
-  #     programs.caelestia = {
+  #     wayland.windowManager.hyprland = {
   #       enable = true;
-  #       cli.enable = true;
+  #       plugins = [
+  #         inputs.split-monitor-workspaces.packages.x86_64-linux.split-monitor-workspaces  
+  #       ];
   #     };
+  #     # imports = [];
   #   };
+  #   useGlobalPkgs = true;
+  #   useUserPackages = true;
   # };
 
   # Bootloader.
