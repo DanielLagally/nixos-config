@@ -87,7 +87,11 @@ in
     packages = with unstable; [
       noto-fonts-cjk-sans
       font-awesome
-    ] ++ (builtins.filter lib.attrsets.isDerivation (builtins.attrValues unstable.nerd-fonts));
+      nerd-fonts.jetbrains-mono
+      material-design-icons
+    ]
+    # ++ (builtins.filter lib.attrsets.isDerivation (builtins.attrValues unstable.nerd-fonts))
+    ;
   };  
 
   # mouse tweaks
