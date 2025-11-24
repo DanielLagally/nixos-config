@@ -13,7 +13,7 @@ buildGoModule rec {
     owner = "BrianWill";
     repo = "japanese_vocab";
     rev = "0b3e73c26582a2463f0f2756a0a28b66962a1daa";
-    hash = "sha256-vTYJ2t0N+5j97+iV2fE7/nwZcjxLV9XzoKDNTgyqOzc=";
+    hash = "sha256-m/oDygZlRl7Vm6iBJOJSXXztieLr9qbAGgUwXnpup7s=";
   };
   vendorHash = "sha256-1c2Zk3KHuew3kgy7vQqIXUacK8JhM8IwIOwgydtC6P8=";
 

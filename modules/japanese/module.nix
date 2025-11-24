@@ -24,7 +24,7 @@
           addons = [
             unstable.fcitx5-mozc
             unstable.fcitx5-gtk
-            unstable.fcitx5-configtool
+            unstable.qt6Packages.fcitx5-configtool
           ];
         };
       };
@@ -32,7 +32,7 @@
     
     environment.variables = {
       GLFW_IM_MODULE = "fcitx";
-      GTK_IM_MODULE = "fcitx";
+      # GTK_IM_MODULE = "fcitx";
       QT_IM_MODULE = "fcitx";
       XMODIFIERS="@im=fcitx";
     };
