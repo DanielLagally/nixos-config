@@ -2,10 +2,22 @@
   description = "main system config";
 
   inputs = {
+    flake-utils = {
+      url = "github:numtide/flake-utils";
+      inputs.nixpkgs.follows = "nixpkgs_unstable";
+    };
     nixpkgs_unstable.url = "github:nixos/nixpkgs?ref=nixos-unstable";
     nixpkgs_stable.url = "github:nixos/nixpkgs?ref=nixos-24.11";    
     home-manager = {
       url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs_unstable";
+    };
+    nix-darwin = {
+      url = "github:nix-darwin/nix-darwin/master";
+      inputs.nixpkgs.follows = "nixpkgs_unstable";
+    };
+    determinate = {
+      url = "https://flakehub.com/f/DeterminateSystems/determinate/3";
       inputs.nixpkgs.follows = "nixpkgs_unstable";
     };
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
@@ -41,9 +53,9 @@
     };
   };
 
-  outputs = { self, nixpkgs_stable, nixpkgs_unstable, home-manager, nixos-hardware, ... } @ inputs:
+  outputs = { self, nixpkgs_stable, nixpkgs_unstable, home-manager, nixos-hardware, nix-darwin, determinate, ... } @ inputs:
   let
-    system = builtins.currentSystem or "x86_64-linux";
+    system = "x86_64-linux";
     unstable = import nixpkgs_unstable {
       inherit system;
       config.allowUnfree = true;
@@ -79,7 +91,14 @@
         ];
       };
     };
-
+    darwinConfigurations.Daniels-MacBook-Pro = nix-darwin.lib.darwinSystem {
+      specialArgs = { inherit inputs stable unstable system home-manager; };
+      modules = [
+        inputs.determinate.darwinModules.default (
+          ./mac/configuration.nix
+        )
+      ];
+    };
     devShells.${system} = {
       c = unstable.mkShell.override { stdenv = llvm_env; } {
         nativeBuildInputs = [
