@@ -12,11 +12,19 @@ in
       substituters = [
         "https://hyprland.cachix.org"
         "https://nix-community.cachix.org"
+        "https://cuda-maintainers.cachix.org"
       ];
+      # extra-trusted-substituters = [
+      #   "https://cache.flox.dev"
+      # ];
       trusted-public-keys = [
+        "cuda-maintainers.cachix.org-1:0dq3bujKpuEPMCX6U4WylrUDZ9JyUG0VpVZa7CNfq5E="
         "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
         "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
       ];
+      # extra-trusted-public-keys = [
+      #   "flox-cache-public-1:7F4OyH7ZCnFhcze3fJdfyXYLQw/aV7GEed86nQ7IsOs="
+      # ];
     };
   };
 
