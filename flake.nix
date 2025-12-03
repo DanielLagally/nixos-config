@@ -57,7 +57,7 @@
     };
   };
 
-  outputs = { self, nixpkgs_stable, nixpkgs_unstable, home-manager, nixos-hardware, nix-darwin, determinate, ... } @ inputs:
+  outputs = { self, nixpkgs_stable, nixpkgs_unstable, home-manager, nixos-hardware, nix-darwin, chaotic, determinate, ... } @ inputs:
   let
     system = "x86_64-linux";
     unstable = import nixpkgs_unstable {
