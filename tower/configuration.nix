@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, lib, unstable, inputs, ... }:
+{ pkgs, config, lib, unstable, inputs, ... }:
 {
   networking.hostName = "tower";
 
@@ -53,6 +53,8 @@
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+
+  boot.kernelPackages = pkgs.linuxPackages_cachyos;#;-lto;#-lto.cachyOverride { mArch = "ZEN4"; };
 
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
@@ -143,8 +145,8 @@
   # services.openssh.enable = true;
 
   # Open ports in the firewall.
-  networking.firewall.allowedTCPPorts = [ 25565 ];
-  networking.firewall.allowedUDPPorts = [ 25565 ];
+  networking.firewall.allowedTCPPorts = [ 25565 42069 ];
+  networking.firewall.allowedUDPPorts = [ 25565 42069 ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
   
