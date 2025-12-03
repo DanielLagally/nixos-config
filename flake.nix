@@ -8,6 +8,7 @@
     };
     nixpkgs_unstable.url = "github:nixos/nixpkgs?ref=nixos-unstable";
     nixpkgs_stable.url = "github:nixos/nixpkgs?ref=nixos-24.11";    
+    chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs_unstable";
@@ -42,7 +43,10 @@
       inputs.nixpkgs.follows = "nixpkgs_unstable";
       inputs.hyprlang.follows = "hyprland/hyprlang";
     };
-    musnix = { url = "github:musnix/musnix"; };
+    musnix = {
+      url = "github:musnix/musnix";
+      inputs.nixpkgs.follows = "nixpkgs_unstable";
+    };
     caelestia-cli = {
       url = "github:caelestia-dots/cli";
       inputs.nixpkgs.follows = "nixpkgs_unstable";
@@ -79,6 +83,7 @@
         inherit system;
         modules = [
           ./tower/configuration.nix
+          chaotic.nixosModules.default
         ];
       };
             
