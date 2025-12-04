@@ -78,13 +78,13 @@
             })
           ];
         };
-      specialArgs = { inherit inputs system home-manager; };
+        specialArgs = { inherit inputs system home-manager; };
         modules = [
           ./tower/configuration.nix
           chaotic.nixosModules.default
+          determinate.nixosModules.default
         ];
       };
-            
       think = nixpkgs-unstable.lib.nixosSystem rec {
         system = "x86_64-linux";
         # overwrite pkgs attribute
@@ -111,6 +111,7 @@
         };
         modules = [
           nixos-hardware.nixosModules.lenovo-thinkpad-t480
+          determinate.nixosModules.default
           ./think/configuration.nix
         ];
       };

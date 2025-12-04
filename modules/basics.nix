@@ -5,7 +5,7 @@ let
 in
 {
   nix = {
-    package = pkgs.nix;
+    # package = pkgs.nix;
     settings = {
       # enable flakes
       experimental-features = [ "nix-command" "flakes" ];
