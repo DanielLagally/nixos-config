@@ -1,4 +1,4 @@
-{ unstable, unstableWithCuda, ... }:
+{ pkgs, ... }:
 
 {
   programs.bash.shellAliases = {
@@ -8,11 +8,11 @@
   };
   
   environment.systemPackages = [
-      unstable.yt-dlp
+      pkgs.yt-dlp
       # unstableWithCuda.openai-whisper # fuck magma ain't nobody got time for that
-      # unstableWithCuda.whisperx # actual impossible to build package, need like 300GB of ram and 4 A100s to build this apparently
-      (unstable.callPackage ./packages/japanese_vocab/package.nix { })
-      (import ./scripts/deepl_jp.nix { inherit unstable; })
+      # pkgs.withCuda.whisperx # actual impossible to build package, need like 300GB of ram and 4 A100s to build this apparently
+      (pkgs.callPackage ./packages/japanese_vocab/package.nix { })
+      (import ./scripts/deepl_jp.nix { unstable = pkgs; })
     ];
 
     i18n = {
@@ -22,9 +22,9 @@
         fcitx5 = {
           waylandFrontend = true;
           addons = [
-            unstable.fcitx5-mozc
-            unstable.fcitx5-gtk
-            unstable.qt6Packages.fcitx5-configtool
+            pkgs.fcitx5-mozc
+            pkgs.fcitx5-gtk
+            pkgs.qt6Packages.fcitx5-configtool
           ];
         };
       };

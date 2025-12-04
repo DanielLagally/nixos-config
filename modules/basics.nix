@@ -1,11 +1,11 @@
-{ inputs, stable, unstable, ... }:
+{ inputs, pkgs, ... }:
 
 let
   zen_repo = inputs.zen-browser.packages."x86_64-linux";
 in
 {
   nix = {
-    package = unstable.nix;
+    package = pkgs.nix;
     settings = {
       # enable flakes
       experimental-features = [ "nix-command" "flakes" ];
@@ -32,39 +32,39 @@ in
     EDITOR = "hx";
   };
 
-  nixpkgs.config.allowUnfree = true;
+  # pkgs.config.allowUnfree = true;
 
   environment.systemPackages = [
-    unstable.helix
-    unstable.yazi
-    unstable.ghostty
-    unstable.htop
-    unstable.mpv
-    unstable.pavucontrol
-    unstable.git
-    unstable.firefox
-    unstable.chromium
-    unstable.thunderbird
+    pkgs.helix
+    pkgs.yazi
+    pkgs.ghostty
+    pkgs.htop
+    pkgs.mpv
+    pkgs.pavucontrol
+    pkgs.git
+    pkgs.firefox
+    pkgs.chromium
+    pkgs.thunderbird
     zen_repo.twilight
-    unstable.udiskie
-    unstable.unzip
-    # unstable.zoxide
-    unstable.altus
-    unstable.tree
-    unstable.video-trimmer
+    pkgs.udiskie
+    pkgs.unzip
+    # pkgs.zoxide
+    pkgs.altus
+    pkgs.tree
+    pkgs.video-trimmer
 
     # language servers
-    unstable.jdt-language-server
-    unstable.texlab
-    unstable.neofetch
-    unstable.nil
-    unstable.ruff
-    unstable.ty
-    unstable.python312Packages.jedi-language-server
-    unstable.python312Packages.python-lsp-server
+    pkgs.jdt-language-server
+    pkgs.texlab
+    pkgs.neofetch
+    pkgs.nil
+    pkgs.ruff
+    pkgs.ty
+    pkgs.python312Packages.jedi-language-server
+    pkgs.python312Packages.python-lsp-server
   ];
 
-  users.defaultUserShell = unstable.fish;
+  users.defaultUserShell = pkgs.fish;
   
   programs = {
     nix-ld.enable = true;
@@ -92,13 +92,13 @@ in
   fonts = {
     enableDefaultPackages = true;
 
-    packages = with unstable; [
+    packages = with pkgs; [
       noto-fonts-cjk-sans
       font-awesome
       nerd-fonts.jetbrains-mono
       material-design-icons
     ]
-    # ++ (builtins.filter lib.attrsets.isDerivation (builtins.attrValues unstable.nerd-fonts))
+    # ++ (builtins.filter lib.attrsets.isDerivation (builtins.attrValues pkgs.nerd-fonts))
     ;
   };  
 
@@ -110,7 +110,7 @@ in
     '';
 
   # disable libinput's debounce algorithm for all mice
-  environment.etc."libinput/local-overrides.quirks".text = unstable.lib.mkForce ''
+  environment.etc."libinput/local-overrides.quirks".text = pkgs.lib.mkForce ''
       [Never Debounce]
       MatchUdevType=mouse
       ModelBouncingKeys=1

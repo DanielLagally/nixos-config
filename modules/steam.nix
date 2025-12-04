@@ -1,4 +1,4 @@
-{inputs, unstable, ...}:
+{inputs, pkgs, ...}:
 
 {
   programs.steam = {
@@ -9,7 +9,7 @@
     gamescopeSession.enable = true;
     protontricks.enable = true;
     extraCompatPackages = [
-      unstable.proton-ge-bin
+      pkgs.proton-ge-bin
       inputs.chaotic.legacyPackages.x86_64-linux.proton-cachyos_x86_64_v4
     ];
   };
@@ -19,11 +19,11 @@
   };
 
   environment.systemPackages = [
-    unstable.wootility
+    pkgs.wootility
   ];
 
   services.udev.packages = [
-    unstable.wooting-udev-rules
+    pkgs.wooting-udev-rules
   ];
   
   programs.gamemode.enable = true;

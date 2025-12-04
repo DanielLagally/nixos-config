@@ -1,9 +1,9 @@
-{ inputs, system, unstable, home-manager, lib, ... }:
+{ inputs, system, pkgs, ... }:
 
 let
   rose-pine = inputs.rose-pine-hyprcursor.packages."x86_64-linux";
   caelestia-pkg = inputs.caelestia-cli.packages.${system}.with-shell;
-  hypr-plugin-dir = unstable.symlinkJoin {
+  hypr-plugin-dir = pkgs.symlinkJoin {
     name = "hyprland-plugins";
     paths = [
       # inputs.hyprtasking.packages.${system}.hyprtasking # appears to be broken, need to update hyprland which breaks caelestia-shell :)
@@ -88,38 +88,38 @@ in
  
   environment.systemPackages =  [
     rose-pine.default
-    unstable.waybar
-    unstable.rofi
-    unstable.dunst
-    unstable.hyprpaper
-    unstable.hyprpicker
-    unstable.hyprpolkitagent
-    unstable.hyprcursor
-    unstable.grimblast
-    unstable.rose-pine-cursor
-    unstable.nwg-look
-    unstable.playerctl
-    unstable.wl-clipboard
-    unstable.wallust
-    unstable.brightnessctl
-    unstable.hyprsunset
-    unstable.hyprlock
-    unstable.hypridle
+    pkgs.waybar
+    pkgs.rofi
+    pkgs.dunst
+    pkgs.hyprpaper
+    pkgs.hyprpicker
+    pkgs.hyprpolkitagent
+    pkgs.hyprcursor
+    pkgs.grimblast
+    pkgs.rose-pine-cursor
+    pkgs.nwg-look
+    pkgs.playerctl
+    pkgs.wl-clipboard
+    pkgs.wallust
+    pkgs.brightnessctl
+    pkgs.hyprsunset
+    pkgs.hyprlock
+    pkgs.hypridle
 
     # caelestia stuff
     caelestia-pkg
-    unstable.starship
-    unstable.fastfetch
-    unstable.btop
-    unstable.eza
-    unstable.app2unit
-    unstable.jq
-    unstable.papirus-icon-theme
-    unstable.cliphist
-    unstable.inotify-tools
-    unstable.libnotify
-    unstable.trash-cli
-    unstable.quickshell
+    pkgs.starship
+    pkgs.fastfetch
+    pkgs.btop
+    pkgs.eza
+    pkgs.app2unit
+    pkgs.jq
+    pkgs.papirus-icon-theme
+    pkgs.cliphist
+    pkgs.inotify-tools
+    pkgs.libnotify
+    pkgs.trash-cli
+    pkgs.quickshell
   ];
   programs.gpu-screen-recorder.enable = true;
 }

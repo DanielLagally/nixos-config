@@ -1,14 +1,12 @@
-{ inputs, stable, unstable, ... }:
+{ pkgs, ... }:
 
-let
-in
 {
   environment.systemPackages = [
-    unstable.bitwig-studio
-    unstable.yabridge
-    unstable.yabridgectl
-    unstable.wineWowPackages.staging
-    unstable.winetricks
-    unstable.easyeffects
+    pkgs.bitwig-studio
+    pkgs.yabridge
+    pkgs.yabridgectl
+    pkgs.wineWowPackages.staging
+    pkgs.winetricks
+    pkgs.easyeffects
   ];
 }

@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ pkgs, config, lib, unstable, inputs, ... }:
+{ inputs, pkgs, ... }:
 {
   networking.hostName = "tower";
 
@@ -20,17 +20,18 @@
     ];
 
   environment.systemPackages = [
-    (unstable.discord.override {
+    (pkgs.discord.override {
       # withOpenASAR = true;
       # withVencord = true;
     })
-    unstable.equibop
-    unstable.legcord
-    unstable.vesktop
-    unstable.anki
-    unstable.prismlauncher
-    unstable.obsidian
-    unstable.shipwright
+    pkgs.equibop
+    pkgs.legcord
+    pkgs.vesktop
+    pkgs.anki
+    pkgs.prismlauncher
+    pkgs.obsidian
+    pkgs.shipwright
+    pkgs.stable.hello
   ];
 
   # home-manager = {
@@ -121,7 +122,7 @@
     isNormalUser = true;
     description = "daniel";
     extraGroups = [ "networkmanager" "wheel" "audio" ];
-    packages = with unstable; [];
+    packages = with pkgs; [];
   };
 
   powerManagement.cpuFreqGovernor = "performance";
