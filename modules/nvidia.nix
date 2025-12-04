@@ -6,15 +6,15 @@ let
   };
 in
 {
-  nixpkgs.overlays = [
-    (self: super: {
-      nvidia_x11 = super.nvidia_x11.overrideAttrs (oldAttrs: {
-        latest = oldAttrs.latest.overrideAttrs (drvAttrs: {
-          patches = drvAttrs.patches ++ [ drm_fop_flags_patch ];
-        });
-      });
-    })
-  ];
+  # nixpkgs.overlays = [
+  #   (self: super: {
+  #     nvidia_x11 = super.nvidia_x11.overrideAttrs (oldAttrs: {
+  #       latest = oldAttrs.latest.overrideAttrs (drvAttrs: {
+  #         patches = drvAttrs.patches ++ [ drm_fop_flags_patch ];
+  #       });
+  #     });
+  #   })
+  # ];
 
 	hardware.graphics = {
     enable = true;

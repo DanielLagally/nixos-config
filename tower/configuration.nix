@@ -4,7 +4,7 @@
 
 { inputs, pkgs, ... }:
 {
-  networking.hostName = "tower";
+  networking.hostName = "himemori";
 
   imports = [ 
       ./../modules/basics.nix
@@ -20,18 +20,17 @@
     ];
 
   environment.systemPackages = [
-    (pkgs.discord.override {
-      # withOpenASAR = true;
-      # withVencord = true;
-    })
+    # (pkgs.discord.override {
+    #   # withOpenASAR = true;
+    #   # withVencord = true;
+    # })
     pkgs.equibop
-    pkgs.legcord
-    pkgs.vesktop
+    # pkgs.legcord
+    # pkgs.vesktop
     pkgs.anki
     pkgs.prismlauncher
     pkgs.obsidian
     pkgs.shipwright
-    pkgs.stable.hello
   ];
 
   # home-manager = {

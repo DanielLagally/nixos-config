@@ -7,7 +7,7 @@ let
     name = "hyprland-plugins";
     paths = [
       # inputs.hyprtasking.packages.${system}.hyprtasking # appears to be broken, need to update hyprland which breaks caelestia-shell :)
-      inputs.hyprsplit.packages.${system}.hyprsplit
+      # inputs.hyprsplit.packages.${system}.hyprsplit
     ];
   };
 in

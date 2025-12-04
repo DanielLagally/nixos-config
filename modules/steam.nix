@@ -10,7 +10,7 @@
     protontricks.enable = true;
     extraCompatPackages = [
       pkgs.proton-ge-bin
-      inputs.chaotic.legacyPackages.x86_64-linux.proton-cachyos_x86_64_v4
+      pkgs.proton-cachyos_x86_64_v4
     ];
   };
   
