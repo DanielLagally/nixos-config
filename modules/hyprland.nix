@@ -8,14 +8,15 @@ let
     paths = [
       # inputs.hyprtasking.packages.${system}.hyprtasking # appears to be broken, need to update hyprland which breaks caelestia-shell :)
       # inputs.hyprsplit.packages.${system}.hyprsplit
+      pkgs.hyprlandPlugins.hyprsplit
     ];
   };
 in
 {
   # enables upstream hyprland flake
-  imports = [
-    inputs.hyprland.nixosModules.default
-  ];
+  # imports = [
+  #   inputs.hyprland.nixosModules.default
+  # ];
 
 # enable opengl
   hardware.graphics = {
@@ -28,7 +29,8 @@ in
   programs.hyprland = {
     enable = true;
     # set the flake package
-    package = inputs.hyprland.packages.${system}.hyprland;
+    # package = inputs.hyprland.packages.${system}.hyprland;
+    # package = pkgs.hyprland;
     # make sure to also set the portal package, so that they are in sync
     # portalPackage = inputs.hyprland.packages.${system}.xdg-desktop-portal-hyprland;
     # option exposed by upstream flake, does not work though

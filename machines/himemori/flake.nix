@@ -4,7 +4,8 @@
     toplevel.url = "../../inputs";
   };
   outputs = inputs': let inputs = inputs'.toplevel.inputs; in with inputs; {
-    nixosConfigurations.default = let system = "x86_64-linux"; in nixpkgs-unstable.lib.nixosSystem {
+    nixosConfigurations.default = nixpkgs-unstable.lib.nixosSystem rec {
+      system = "x86_64-linux";
       # overwrite pkgs attribute
       pkgs = import nixpkgs-unstable {
         inherit system;
@@ -27,7 +28,6 @@
               };
             };
           })
-          chaotic.overlays.cache-friendly
         ];
       };
       specialArgs = { inherit inputs system home-manager; };

@@ -3,8 +3,9 @@
   inputs = {
     flake-utils.url = "github:numtide/flake-utils";
     nixpkgs-unstable.url = "github:nixos/nixpkgs?ref=nixos-unstable";
+    # nixpkgs-unstable.url = "github:nixos/nixpkgs?ref=nixos-25.11";
     nixpkgs-stable.url = "github:nixos/nixpkgs?ref=nixos-25.11";
-    chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
+    chaotic.url = "github:chaotic-cx/nyx/29c49282c9b2e8216004a87086494defe401fee8";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
@@ -42,10 +43,6 @@
     };
     caelestia-cli = {
       url = "github:caelestia-dots/cli";
-      inputs.nixpkgs.follows = "nixpkgs-unstable";
-    };
-    caelestia-shell = {
-      url = "github:caelestia-dots/shell";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
   };

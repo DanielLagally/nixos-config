@@ -21,7 +21,6 @@ in
     enable32Bit = true;
   };
 
-  # nvidia
   services.xserver.videoDrivers = ["nvidia"];
 
   hardware.nvidia = {
