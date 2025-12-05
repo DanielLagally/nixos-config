@@ -7,17 +7,22 @@
   networking.hostName = "himemori";
 
   imports = [ 
-      ./../../modules/basics.nix
-      ./hardware-configuration.nix
-      ./../../modules/nvidia.nix
-      ./../../modules/hyprland.nix
-      ./../../modules/steam.nix
-      ./../../modules/music.nix
-      ./../../modules/japanese/module.nix
-      # ./../../modules/home-modules/common.nix
-      inputs.musnix.nixosModules.musnix
-      inputs.home-manager.nixosModules.home-manager
-    ];
+    ./hardware-configuration.nix
+    ./../../modules/basics.nix
+    ./../../modules/nvidia.nix
+    ./../../modules/hyprland.nix
+    ./../../modules/steam.nix
+    ./../../modules/music.nix
+    ./../../modules/japanese/module.nix
+    # ./../../modules/home-modules/common.nix
+    inputs.musnix.nixosModules.musnix
+    inputs.home-manager.nixosModules.home-manager
+  ];
+
+  # append to etc/nix/nix.custom.conf, i.e. to configure determinate nix
+  nix.extraOptions = ''
+    eval-cores = 0 
+  '';
 
   environment.systemPackages = [
     # (pkgs.discord.override {
