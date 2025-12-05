@@ -7,15 +7,15 @@
   networking.hostName = "himemori";
 
   imports = [ 
-      ./../modules/basics.nix
+      ./../../modules/basics.nix
       ./hardware-configuration.nix
-      ./../modules/nvidia.nix
-      ./../modules/hyprland.nix
-      ./../modules/steam.nix
-      ./../modules/music.nix
-      ./../modules/japanese/module.nix
+      ./../../modules/nvidia.nix
+      ./../../modules/hyprland.nix
+      ./../../modules/steam.nix
+      ./../../modules/music.nix
+      ./../../modules/japanese/module.nix
+      # ./../../modules/home-modules/common.nix
       inputs.musnix.nixosModules.musnix
-      # ./../modules/home-modules/common.nix
       inputs.home-manager.nixosModules.home-manager
     ];
 
@@ -54,7 +54,7 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  boot.kernelPackages = pkgs.linuxPackages_cachyos;#;-lto;#-lto.cachyOverride { mArch = "ZEN4"; };
+  boot.kernelPackages = pkgs.linuxPackages_cachyos;#-lto.cachyOverride { mArch = "ZEN4"; };
 
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
@@ -121,7 +121,7 @@
     isNormalUser = true;
     description = "daniel";
     extraGroups = [ "networkmanager" "wheel" "audio" ];
-    packages = with pkgs; [];
+    packages = [];
   };
 
   powerManagement.cpuFreqGovernor = "performance";

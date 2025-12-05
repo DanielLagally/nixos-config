@@ -26,7 +26,7 @@
       modules = [
         nixos-hardware.nixosModules.lenovo-thinkpad-t480
         determinate.nixosModules.default
-        ./think/configuration.nix
+        ./configuration.nix
       ];
     };
   };

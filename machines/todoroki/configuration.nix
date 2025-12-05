@@ -1,4 +1,4 @@
-{ inputs, system, unstable, pkgs, ... } :
+{ pkgs, ... } :
 
 {
   nix = {
@@ -38,7 +38,7 @@
       uid = 501;
       shell = pkgs.fish;
       packages = [
-        unstable.hello
+        pkgs.hello
       ];
     };
   };

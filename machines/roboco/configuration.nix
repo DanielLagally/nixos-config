@@ -2,21 +2,21 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, stable, unstable, ... }:
+{ pkgs, ... }:
 
 {
   imports =
     [
-      ./../modules/basics.nix
+      ./../../modules/basics.nix
       ./hardware-configuration.nix
-      ./../modules/hyprland.nix
+      ./../../modules/hyprland.nix
     ];
 
   environment.systemPackages = [
-    unstable.git
-    unstable.gh
-    unstable.discord
-    unstable.obsidian
+    pkgs.git
+    pkgs.gh
+    pkgs.discord
+    pkgs.obsidian
   ];
 
   powerManagement.cpuFreqGovernor = "ondemand";
@@ -26,7 +26,7 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  networking.hostName = "think"; # Define your hostname.
+  networking.hostName = "roboco"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
@@ -68,7 +68,7 @@
     isNormalUser = true;
     description = "daniel";
     extraGroups = [ "networkmanager" "wheel" ];
-    packages = with pkgs; [];
+    packages = [];
   };
 
   # Some programs need SUID wrappers, can be configured further or are

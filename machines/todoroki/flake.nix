@@ -27,7 +27,7 @@
       };
       modules = [
         inputs.determinate.darwinModules.default (
-          ./mac/configuration.nix
+          ./configuration.nix
         )
       ];
     };

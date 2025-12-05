@@ -32,7 +32,7 @@
       };
       specialArgs = { inherit inputs system home-manager; };
       modules = [
-        ../../tower/configuration.nix
+        ./configuration.nix
         chaotic.nixosModules.default
         determinate.nixosModules.default
       ];
