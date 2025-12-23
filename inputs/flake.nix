@@ -4,7 +4,8 @@
     flake-utils.url = "github:numtide/flake-utils";
     nixpkgs-unstable.url = "github:nixos/nixpkgs?ref=nixos-unstable";
     nixpkgs-stable.url = "github:nixos/nixpkgs?ref=nixos-25.11";
-    chaotic.url = "github:chaotic-cx/nyx/29c49282c9b2e8216004a87086494defe401fee8";
+    chaotic.url = "github:chaotic-cx/nyx/29c49282c9b2e8216004a87086494defe401fee8"; # dead
+    nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel/release";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs-unstable";

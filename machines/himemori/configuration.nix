@@ -59,7 +59,7 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  boot.kernelPackages = pkgs.linuxPackages_cachyos;#-lto;#.cachyOverride { mArch = "ZEN4"; };
+  boot.kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-bore-lto;#-lto;#.cachyOverride { mArch = "ZEN4"; };
 
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 

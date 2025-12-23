@@ -13,6 +13,7 @@ in
         "https://hyprland.cachix.org"
         "https://nix-community.cachix.org"
         "https://cuda-maintainers.cachix.org"
+        "https://attic.xuyh0120.win/lantian"
       ];
       # extra-trusted-substituters = [
       #   "https://cache.flox.dev"
@@ -21,6 +22,7 @@ in
         "cuda-maintainers.cachix.org-1:0dq3bujKpuEPMCX6U4WylrUDZ9JyUG0VpVZa7CNfq5E="
         "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
         "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+        "lantian:EeAUQ+W+6r7EtwnmYjeVwx5kOGEBpjlBfPlzGlTNvHc="
       ];
       # extra-trusted-public-keys = [
       #   "flox-cache-public-1:7F4OyH7ZCnFhcze3fJdfyXYLQw/aV7GEed86nQ7IsOs="

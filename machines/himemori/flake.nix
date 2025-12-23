@@ -3,7 +3,7 @@
   inputs = {
     toplevel.url = "../../inputs";
   };
-  outputs = inputs': let inputs = inputs'.toplevel.inputs; in with inputs; {
+  outputs = { self, ... } @ inputs': let inputs = inputs'.toplevel.inputs; in with inputs; {
     nixosConfigurations.default = nixpkgs-unstable.lib.nixosSystem rec {
       system = "x86_64-linux";
       # overwrite pkgs attribute
@@ -28,6 +28,7 @@
               };
             };
           })
+          nix-cachyos-kernel.overlays.pinned
         ];
       };
       specialArgs = { inherit inputs system home-manager; };
