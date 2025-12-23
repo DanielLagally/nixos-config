@@ -7,6 +7,6 @@
     pkgs.yabridgectl
     pkgs.wineWowPackages.staging
     pkgs.winetricks
-    pkgs.stable.easyeffects
+    pkgs.easyeffects
   ];
 }
