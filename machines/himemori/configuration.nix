@@ -25,10 +25,11 @@
   '';
 
   environment.systemPackages = [
-    # (pkgs.discord.override {
-    #   # withOpenASAR = true;
-    #   # withVencord = true;
-    # })
+    (pkgs.discord.override {
+      # withOpenASAR = true;
+      # withVencord = true;
+      withEquicord = true;
+    })
     pkgs.equibop
     # pkgs.legcord
     # pkgs.vesktop

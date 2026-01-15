@@ -20,7 +20,10 @@
 
   environment.systemPackages = [
     pkgs.aseprite
+    pkgs.scrcpy
   ];
+
+  boot.kernelModules = [ "ntsync" ];
 
   hardware.wooting.enable = true;
   
