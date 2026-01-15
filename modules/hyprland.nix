@@ -122,6 +122,7 @@ in
     pkgs.libnotify
     pkgs.trash-cli
     pkgs.quickshell
+    pkgs.bluez
   ];
   programs.gpu-screen-recorder.enable = true;
 }
