@@ -93,6 +93,11 @@ in
   qt.style = "adwaita-dark";
 
   fonts = {
+    fontconfig = {
+      subpixel.rgba = "rgb";
+      hinting.style = "full";
+    };
+    
     enableDefaultPackages = true;
 
     packages = with pkgs; [
