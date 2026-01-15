@@ -19,12 +19,9 @@
   };
 
   environment.systemPackages = [
-    pkgs.wootility
   ];
 
-  services.udev.packages = [
-    pkgs.wooting-udev-rules
-  ];
+  hardware.wooting.enable = true;
   
   programs.gamemode.enable = true;
 }
