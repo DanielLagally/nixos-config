@@ -19,6 +19,7 @@
   };
 
   environment.systemPackages = [
+    pkgs.aseprite
   ];
 
   hardware.wooting.enable = true;
