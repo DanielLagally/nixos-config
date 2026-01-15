@@ -44,6 +44,7 @@ in
     pkgs.mpv
     pkgs.pavucontrol
     pkgs.git
+    pkgs.jujutsu
     pkgs.firefox
     pkgs.chromium
     pkgs.thunderbird
