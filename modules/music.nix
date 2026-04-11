@@ -5,7 +5,7 @@
     pkgs.bitwig-studio
     pkgs.yabridge
     pkgs.yabridgectl
-    pkgs.wineWowPackages.staging
+    pkgs.wineWow64Packages.staging
     pkgs.winetricks
     pkgs.easyeffects
   ];

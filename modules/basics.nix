@@ -55,11 +55,12 @@ in
     pkgs.altus
     pkgs.tree
     pkgs.video-trimmer
+    pkgs.nix-output-monitor
+    pkgs.miniserve
 
     # language servers
     pkgs.jdt-language-server
     pkgs.texlab
-    pkgs.neofetch
     pkgs.nil
     pkgs.ruff
     pkgs.ty

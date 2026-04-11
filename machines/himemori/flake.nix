@@ -8,7 +8,8 @@
       system = "x86_64-linux";
       # overwrite pkgs attribute
       pkgs = import nixpkgs-unstable {
-        inherit system;
+        inherit system; # outdated but still needed for some reason?
+        hostPlatform = system; # new way to declare nixpkgs system
         config = {
           allowUnfree = true;
         };
@@ -29,12 +30,12 @@
             };
           })
           nix-cachyos-kernel.overlays.pinned
+          proton-cachyos.overlays.default
         ];
       };
       specialArgs = { inherit inputs system home-manager; };
       modules = [
         ./configuration.nix
-        chaotic.nixosModules.default
         determinate.nixosModules.default
       ];
     };
