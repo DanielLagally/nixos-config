@@ -82,10 +82,10 @@ in
   # };
 
   programs.bash.shellAliases = {
-    hy = "hyprland";
+    hy = "start-hyprland";
   };
   programs.fish.shellAliases = {
-    hy = "hyprland";
+    hy = "start-hyprland";
   };
  
   environment.systemPackages =  [

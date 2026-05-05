@@ -6,7 +6,7 @@
 {
   networking.hostName = "himemori";
 
-  imports = [ 
+  imports = [
     ./hardware-configuration.nix
     ./../../modules/basics.nix
     ./../../modules/nvidia.nix
@@ -21,7 +21,7 @@
 
   # append to etc/nix/nix.custom.conf, i.e. to configure determinate nix
   nix.extraOptions = ''
-    eval-cores = 0 
+    eval-cores = 0
   '';
 
   environment.systemPackages = [
@@ -33,10 +33,12 @@
     pkgs.equibop
     # pkgs.legcord
     # pkgs.vesktop
-    pkgs.anki
+    # pkgs.anki # currently broken
+    pkgs.anki-bin
     pkgs.prismlauncher
     pkgs.obsidian
     pkgs.shipwright
+    # pkgs.sonic-pi # broken
   ];
 
   # home-manager = {
@@ -47,7 +49,7 @@
   #     wayland.windowManager.hyprland = {
   #       enable = true;
   #       plugins = [
-  #         inputs.split-monitor-workspaces.packages.x86_64-linux.split-monitor-workspaces  
+  #         inputs.split-monitor-workspaces.packages.x86_64-linux.split-monitor-workspaces
   #       ];
   #     };
   #     # imports = [];
@@ -60,7 +62,11 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  boot.kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-bore-lto;#-lto;#.cachyOverride { mArch = "ZEN4"; };
+  boot.kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-latest-lto-zen4;
+  services.scx = {
+    enable = true;
+    scheduler = "scx_rusty";
+  };
 
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
@@ -74,7 +80,7 @@
   # Enable networking
   networking.networkmanager.enable = true;
 
-  # audio  
+  # audio
   musnix.enable = true;
   musnix.rtcqs.enable = true;
 
@@ -158,7 +164,7 @@
   networking.firewall.allowedUDPPorts = [ 25565 42069 ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
-  
+
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

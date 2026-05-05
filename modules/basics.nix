@@ -10,16 +10,18 @@ in
       # enable flakes
       experimental-features = [ "nix-command" "flakes" ];
       substituters = [
+        "https://cache.flox.dev"
         "https://hyprland.cachix.org"
+        "https://cache.nixos-cuda.org"
         "https://nix-community.cachix.org"
-        "https://cuda-maintainers.cachix.org"
         "https://attic.xuyh0120.win/lantian"
       ];
       # extra-trusted-substituters = [
       #   "https://cache.flox.dev"
       # ];
       trusted-public-keys = [
-        "cuda-maintainers.cachix.org-1:0dq3bujKpuEPMCX6U4WylrUDZ9JyUG0VpVZa7CNfq5E="
+        "flox-cache-public-1:7F4OyH7ZCnFhcze3fJdfyXYLQw/aV7GEed86nQ7IsOs="
+        "cache.nixos-cuda.org:74DUi4Ye579gUqzH4ziL9IyiJBlDpMRn9MBN8oNan9M="
         "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
         "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
         "lantian:EeAUQ+W+6r7EtwnmYjeVwx5kOGEBpjlBfPlzGlTNvHc="
@@ -38,6 +40,7 @@ in
 
   environment.systemPackages = [
     pkgs.helix
+    pkgs.zed-editor
     pkgs.yazi
     pkgs.ghostty
     pkgs.htop
@@ -62,6 +65,7 @@ in
     pkgs.jdt-language-server
     pkgs.texlab
     pkgs.nil
+    pkgs.nixd
     pkgs.ruff
     pkgs.ty
     pkgs.python312Packages.jedi-language-server
