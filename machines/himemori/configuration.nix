@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ inputs, pkgs, ... }:
+{ inputs, pkgs, config, ... }:
 {
   networking.hostName = "himemori";
 
@@ -33,8 +33,7 @@
     pkgs.equibop
     # pkgs.legcord
     # pkgs.vesktop
-    # pkgs.anki # currently broken
-    pkgs.anki-bin
+    pkgs.anki
     pkgs.prismlauncher
     pkgs.obsidian
     pkgs.shipwright
@@ -57,6 +56,14 @@
   #   useGlobalPkgs = true;
   #   useUserPackages = true;
   # };
+
+  # temporary self-hosting
+  services.karakeep = {
+    enable = true;
+    environmentFile = "${config.users.users.daniel.home}/.config/karakeep/karakeep.env";
+    browser.exe = "${pkgs.chromium}/bin/chromium";
+  };
+
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;

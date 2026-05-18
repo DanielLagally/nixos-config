@@ -1,10 +1,10 @@
 { config, pkgs, ... }:
-let
-  drm_fop_flags_patch = pkgs.fetchpatch {
-    url    = "https://github.com/Binary-Eater/open-gpu-kernel-modules/commit/8ac26d3c66ea88b0f80504bdd1e907658b41609d.patch";
-    sha256 = "0+SfIu3uYNQCf/KXhv4PWvruTVKQSh4bgU1moePhe57U=";
-  };
-in
+# let
+#   drm_fop_flags_patch = pkgs.fetchpatch {
+#     url    = "https://github.com/Binary-Eater/open-gpu-kernel-modules/commit/8ac26d3c66ea88b0f80504bdd1e907658b41609d.patch";
+#     sha256 = "0+SfIu3uYNQCf/KXhv4PWvruTVKQSh4bgU1moePhe57U=";
+#   };
+# in
 {
   # nixpkgs.overlays = [
   #   (self: super: {
@@ -24,7 +24,7 @@ in
   services.xserver.videoDrivers = ["nvidia"];
 
   hardware.nvidia = {
-    package = config.boot.kernelPackages.nvidiaPackages.beta;
+    package = config.boot.kernelPackages.nvidiaPackages.latest;
   
     modesetting.enable = true;
     nvidiaPersistenced = true;
@@ -39,15 +39,15 @@ in
     nvidiaSettings = true;
   };
 
-  environment.sessionVariables = {
-    WLR_NO_HARDWARE_CURSOR = "1";
-    LIBVA_DRIVER_NAME = "nvidia";
-    __GLX_VENDOR_LIBRARY_NAME = "nvidia";
-  };
+  # environment.sessionVariables = {
+  #   WLR_NO_HARDWARE_CURSOR = "1";
+  #   LIBVA_DRIVER_NAME = "nvidia";
+  #   __GLX_VENDOR_LIBRARY_NAME = "nvidia";
+  # };
 
-  boot = {
-    initrd.kernelModules = [ "nvidia" "nvidia_modeset" "nvidia_uvm" "nvidia_drm" ];
-    extraModulePackages = [ config.boot.kernelPackages.nvidia_x11 ];
-    kernelParams = [ "nvidia-drm.fbdev=1" ];
-  };
+  # boot = {
+  #   initrd.kernelModules = [ "nvidia" "nvidia_modeset" "nvidia_uvm" "nvidia_drm" ];
+  #   extraModulePackages = [ config.boot.kernelPackages.nvidia_x11 ];
+  #   kernelParams = [ "nvidia-drm.fbdev=1" ];
+  # };
 }

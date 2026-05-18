@@ -18,7 +18,7 @@
       url = "https://flakehub.com/f/DeterminateSystems/determinate/3";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
-    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+  nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     hyprland.url = "github:hyprwm/Hyprland";
     hyprsplit = {
       url = "github:shezdy/hyprsplit";

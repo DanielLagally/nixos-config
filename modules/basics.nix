@@ -10,9 +10,9 @@ in
       # enable flakes
       experimental-features = [ "nix-command" "flakes" ];
       substituters = [
+        "https://cache.nixos-cuda.org"
         "https://cache.flox.dev"
         "https://hyprland.cachix.org"
-        "https://cache.nixos-cuda.org"
         "https://nix-community.cachix.org"
         "https://attic.xuyh0120.win/lantian"
       ];
@@ -60,6 +60,7 @@ in
     pkgs.video-trimmer
     pkgs.nix-output-monitor
     pkgs.miniserve
+    pkgs.qpwgraph
 
     # language servers
     pkgs.jdt-language-server
@@ -76,6 +77,7 @@ in
   
   programs = {
     nix-ld.enable = true;
+    nh.enable = true;
     direnv = {
       enable = true;
       enableFishIntegration = true;
