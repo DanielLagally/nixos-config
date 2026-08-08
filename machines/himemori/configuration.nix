@@ -13,6 +13,7 @@
     ./../../modules/hyprland.nix
     ./../../modules/steam.nix
     ./../../modules/music.nix
+    ./../../modules/self-hosting.nix
     ./../../modules/japanese/module.nix
     # ./../../modules/home-modules/common.nix
     inputs.musnix.nixosModules.musnix
@@ -57,13 +58,6 @@
   #   useUserPackages = true;
   # };
 
-  # temporary self-hosting
-  services.karakeep = {
-    enable = true;
-    environmentFile = "${config.users.users.daniel.home}/.config/karakeep/karakeep.env";
-    browser.exe = "${pkgs.chromium}/bin/chromium";
-  };
-
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -72,7 +66,8 @@
   boot.kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-latest-lto-zen4;
   services.scx = {
     enable = true;
-    scheduler = "scx_rusty";
+    scheduler = "scx_lavd";
+    extraArgs = [ "--performance" ];
   };
 
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -167,8 +162,8 @@
   # services.openssh.enable = true;
 
   # Open ports in the firewall.
-  networking.firewall.allowedTCPPorts = [ 25565 42069 ];
-  networking.firewall.allowedUDPPorts = [ 25565 42069 ];
+  networking.firewall.allowedTCPPorts = [ 25565 42069 60420];
+  networking.firewall.allowedUDPPorts = [ 25565 42069 60420];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
 

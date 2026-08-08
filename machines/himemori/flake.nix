@@ -31,6 +31,7 @@
           })
           nix-cachyos-kernel.overlays.pinned
           proton-cachyos.overlays.default
+          # zed-editor.overlays.default
         ];
       };
       specialArgs = { inherit inputs system home-manager; };

@@ -10,6 +10,7 @@ in
       # enable flakes
       experimental-features = [ "nix-command" "flakes" ];
       substituters = [
+        "https://zed.cachix.org"
         "https://cache.nixos-cuda.org"
         "https://cache.flox.dev"
         "https://hyprland.cachix.org"
@@ -20,6 +21,7 @@ in
       #   "https://cache.flox.dev"
       # ];
       trusted-public-keys = [
+        "zed.cachix.org-1:/pHQ6dpMsAZk2DiP4WCL0p9YDNKWj2Q5FL20bNmw1cU="
         "flox-cache-public-1:7F4OyH7ZCnFhcze3fJdfyXYLQw/aV7GEed86nQ7IsOs="
         "cache.nixos-cuda.org:74DUi4Ye579gUqzH4ziL9IyiJBlDpMRn9MBN8oNan9M="
         "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="

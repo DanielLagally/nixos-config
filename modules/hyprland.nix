@@ -123,8 +123,12 @@ in
     pkgs.trash-cli
     pkgs.quickshell
     pkgs.bluez
+    pkgs.ddcutil
   ];
   programs.gpu-screen-recorder.enable = true;
   services.upower.enable = true;
   services.power-profiles-daemon.enable = true;
+
+  # Enable backlight control
+  hardware.i2c.enable = true;
 }

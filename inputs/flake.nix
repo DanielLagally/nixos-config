@@ -18,7 +18,7 @@
       url = "https://flakehub.com/f/DeterminateSystems/determinate/3";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
-  nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     hyprland.url = "github:hyprwm/Hyprland";
     hyprsplit = {
       url = "github:shezdy/hyprsplit";
@@ -44,6 +44,10 @@
     caelestia-cli = {
       url = "github:caelestia-dots/cli";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
+    zed-editor = {
+      url = "github:zed-industries/zed/v1.4.4";
+      # inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
   };
   outputs = inputs: { };
