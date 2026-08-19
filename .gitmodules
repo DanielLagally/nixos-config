@@ -1,3 +1,6 @@
 [submodule "shells/tum"]
 	path = shells/tum
 	url = git@github.com:DanielLagally/tum-shells.git
+[submodule "dotfiles"]
+	path = dotfiles
+	url = git@github.com:DanielLagally/dotfiles.git
