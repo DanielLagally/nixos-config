@@ -114,6 +114,12 @@ in
       font-awesome
       nerd-fonts.jetbrains-mono
       material-design-icons
+      # caelestia-shell's configured fonts (~/.config/caelestia/shell.json
+      # appearance.font.family) — without these, its icon glyphs (wifi,
+      # volume, bluetooth, etc. in the bar) render blank.
+      material-symbols
+      rubik
+      nerd-fonts.caskaydia-cove
     ]
     # ++ (builtins.filter lib.attrsets.isDerivation (builtins.attrValues pkgs.nerd-fonts))
     ;

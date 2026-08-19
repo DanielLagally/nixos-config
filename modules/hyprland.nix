@@ -3,20 +3,12 @@
 let
   rose-pine = inputs.rose-pine-hyprcursor.packages."x86_64-linux";
   caelestia-pkg = inputs.caelestia-cli.packages.${system}.with-shell;
-  hypr-plugin-dir = pkgs.symlinkJoin {
-    name = "hyprland-plugins";
-    paths = [
-      # inputs.hyprtasking.packages.${system}.hyprtasking # appears to be broken, need to update hyprland which breaks caelestia-shell :)
-      # inputs.hyprsplit.packages.${system}.hyprsplit
-      # pkgs.hyprlandPlugins.hyprsplit
-    ];
-  };
 in
 {
   # enables upstream hyprland flake
-  # imports = [
-  #   inputs.hyprland.nixosModules.default
-  # ];
+  imports = [
+    inputs.hyprland.nixosModules.default
+  ];
 
   # enable opengl
   hardware.graphics = {
@@ -29,25 +21,15 @@ in
   programs.hyprland = {
     enable = true;
     # set the flake package
-    # package = inputs.hyprland.packages.${system}.hyprland;
-    # package = pkgs.hyprland;
+    package = inputs.hyprland.packages.${system}.hyprland;
     # make sure to also set the portal package, so that they are in sync
-    # portalPackage = inputs.hyprland.packages.${system}.xdg-desktop-portal-hyprland;
-    # option exposed by upstream flake, does not work though
-    # plugins = [
-    #   inputs.split-monitor-workspaces.packages.x86_64-linux.split-monitor-workspaces
-    #   unstable.hyprlandPlugins.hyprexpo
-    #   unstable.hyprlandPlugins.hyprspace
-    #   inputs.hyprland-plugins.packages.x86_64-linux.hyprexpo
-    # ];
-
+    portalPackage = inputs.hyprland.packages.${system}.xdg-desktop-portal-hyprland;
     xwayland.enable = true;
   };
   programs.xwayland.enable = true;
 
   environment.sessionVariables = {
     NIXOS_OZONE_WL = "1";
-    HYPR_PLUGIN_DIR = hypr-plugin-dir;
   };
 
   # theme stuff
@@ -65,12 +47,37 @@ in
       }
     ];
   };
-  # # portals
-  # xdg.portal = {
-  #   enable = true;
-  #   # wlr.enable = true;
-  #   extraPortals = [ unstable.xdg-desktop-portal-gtk ]; # gtk or nvidia?
-  # };
+  # portals
+  # (extraPortals already includes xdg-desktop-portal-gtk by default, via
+  # nixpkgs' own programs.hyprland module -> wayland-session.nix)
+  xdg.portal = {
+    enable = true;
+    config = {
+      # gtk's own .portal file restricts itself to `UseIn=gnome`, so it
+      # won't get picked under XDG_CURRENT_DESKTOP=Hyprland unless named
+      # explicitly here — this is what apps' dark/light mode queries
+      # (org.freedesktop.impl.portal.Settings) depend on, since the
+      # hyprland portal only implements Screenshot/ScreenCast/etc, not
+      # Settings.
+      common.default = [ "hyprland" "gtk" ];
+      hyprland.default = [ "hyprland" "gtk" ];
+    };
+  };
+
+  # No display manager — Hyprland is started manually from a TTY (the `hy`
+  # alias below), which by itself never activates graphical-session.target,
+  # so anything gated on it (like xdg-desktop-portal.service) never starts.
+  # Using the plain hyprland-session.target recipe (wiki: Useful-Utilities/
+  # Systemd-start) instead of UWSM — keeps the `start-hyprland` launch
+  # exactly as before; Hyprland itself starts/stops this via hl.on(...)
+  # hooks in hypr/hyprland.lua.
+  systemd.user.targets.hyprland-session = {
+    description = "Hyprland session";
+    bindsTo = [ "graphical-session.target" ];
+    wants = [ "graphical-session-pre.target" ];
+    after = [ "graphical-session-pre.target" ];
+    unitConfig.PropagatesStopTo = "graphical-session.target";
+  };
 
   # xdg.terminal-exec = {
   #   enable = true;
@@ -87,7 +94,7 @@ in
   programs.fish.shellAliases = {
     hy = "start-hyprland";
   };
- 
+
   environment.systemPackages =  [
     rose-pine.default
     pkgs.waybar
