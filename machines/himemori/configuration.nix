@@ -38,7 +38,7 @@
     pkgs.prismlauncher
     pkgs.obsidian
     pkgs.shipwright
-    # pkgs.sonic-pi # broken
+    pkgs.claude-code
   ];
 
   # home-manager = {
@@ -67,6 +67,8 @@
 
   # Higher mmap limit for EAC-protected games (e.g. The Finals) — default is too low
   boot.kernel.sysctl."vm.max_map_count" = 2147483642;
+
+  boot.zswap.enable = true;
 
   services.scx = {
     enable = true;
