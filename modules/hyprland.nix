@@ -8,7 +8,7 @@ let
     paths = [
       # inputs.hyprtasking.packages.${system}.hyprtasking # appears to be broken, need to update hyprland which breaks caelestia-shell :)
       # inputs.hyprsplit.packages.${system}.hyprsplit
-      pkgs.hyprlandPlugins.hyprsplit
+      # pkgs.hyprlandPlugins.hyprsplit
     ];
   };
 in
@@ -18,7 +18,7 @@ in
   #   inputs.hyprland.nixosModules.default
   # ];
 
-# enable opengl
+  # enable opengl
   hardware.graphics = {
     enable = true;
     package = inputs.hyprland.inputs.nixpkgs.legacyPackages.${system}.mesa;

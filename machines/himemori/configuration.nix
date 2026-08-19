@@ -64,6 +64,10 @@
   boot.loader.efi.canTouchEfiVariables = true;
 
   boot.kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-latest-lto-zen4;
+
+  # Higher mmap limit for EAC-protected games (e.g. The Finals) — default is too low
+  boot.kernel.sysctl."vm.max_map_count" = 2147483642;
+
   services.scx = {
     enable = true;
     scheduler = "scx_lavd";
