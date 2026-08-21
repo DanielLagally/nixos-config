@@ -68,6 +68,8 @@
   # Higher mmap limit for EAC-protected games (e.g. The Finals) — default is too low
   boot.kernel.sysctl."vm.max_map_count" = 2147483642;
 
+  boot.zswap.enable = true;
+
   # GPU power limit bump (RTX 4070 Ti stock TDP is 285W; card supports up to 366W).
   # nvidia-smi -pl does not persist across reboots, hence this service.
   # NOTE: 350W is tuned specifically for this machine's RTX 4070 Ti. If this
