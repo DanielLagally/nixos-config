@@ -36,6 +36,11 @@ in
 
   environment.variables = {
     EDITOR = "hx";
+    # Self-contained interpreters (uv/pipx-managed Python, some Go/Rust
+    # tools) don't inherit trust from the system the way nixpkgs-built
+    # packages do, and this system doesn't otherwise export a CA bundle
+    # path — without this they fail TLS verification outright.
+    SSL_CERT_FILE = "${pkgs.cacert}/etc/ssl/certs/ca-bundle.crt";
   };
 
   # pkgs.config.allowUnfree = true;
