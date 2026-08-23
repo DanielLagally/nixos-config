@@ -49,7 +49,6 @@ in
     pkgs.helix
     pkgs.zed-editor
     pkgs.yazi
-    pkgs.ghostty
     pkgs.htop
     pkgs.mpv
     pkgs.pavucontrol

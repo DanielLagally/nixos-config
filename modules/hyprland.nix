@@ -106,9 +106,6 @@ in
 
   environment.systemPackages =  [
     rose-pine.default
-    pkgs.waybar
-    pkgs.rofi
-    pkgs.hyprpaper
     pkgs.hyprpicker
     pkgs.hyprpolkitagent
     pkgs.hyprcursor
@@ -117,11 +114,7 @@ in
     pkgs.nwg-look
     pkgs.playerctl
     pkgs.wl-clipboard
-    pkgs.wallust
     pkgs.brightnessctl
-    pkgs.hyprsunset
-    pkgs.hyprlock
-    pkgs.hypridle
 
     # caelestia stuff
     caelestia-pkg

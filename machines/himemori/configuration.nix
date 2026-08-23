@@ -15,7 +15,6 @@
     ./../../modules/music.nix
     ./../../modules/self-hosting.nix
     ./../../modules/japanese/module.nix
-    # ./../../modules/home-modules/common.nix
     inputs.musnix.nixosModules.musnix
     inputs.home-manager.nixosModules.home-manager
   ];
@@ -40,24 +39,6 @@
     pkgs.shipwright
     pkgs.claude-code
   ];
-
-  # home-manager = {
-  #   users.daniel = {
-  #     home = {
-  #       stateVersion = "25.11";
-  #     };
-  #     wayland.windowManager.hyprland = {
-  #       enable = true;
-  #       plugins = [
-  #         inputs.split-monitor-workspaces.packages.x86_64-linux.split-monitor-workspaces
-  #       ];
-  #     };
-  #     # imports = [];
-  #   };
-  #   useGlobalPkgs = true;
-  #   useUserPackages = true;
-  # };
-
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
