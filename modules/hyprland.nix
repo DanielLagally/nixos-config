@@ -32,6 +32,15 @@ in
     NIXOS_OZONE_WL = "1";
   };
 
+  # Qt apps (fcitx5's classic UI included) were getting no icon-theme
+  # integration because QT_QPA_PLATFORMTHEME pointed at a custom "qtengine"
+  # plugin that was never built. qt5ct/qt6ct is a standard, working
+  # replacement — the "qt5ct" name covers both (see nixos/modules/config/qt.nix).
+  qt = {
+    enable = true;
+    platformTheme = "qt5ct";
+  };
+
   # theme stuff
   programs.dconf = {
     enable = true;
