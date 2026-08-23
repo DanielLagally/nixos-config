@@ -108,7 +108,6 @@ in
     rose-pine.default
     pkgs.waybar
     pkgs.rofi
-    pkgs.dunst
     pkgs.hyprpaper
     pkgs.hyprpicker
     pkgs.hyprpolkitagent
