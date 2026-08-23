@@ -6,6 +6,24 @@
     enable = true;
     environmentFile = "${config.users.users.daniel.home}/.config/karakeep/karakeep.env";
     browser.exe = "${pkgs.chromium}/bin/chromium";
+
+    # Node.js 24.19.0 shipped a regression (nodejs/node#63642) that reliably
+    # SIGABRTs NAN-style native addons like better-sqlite3 under GC pressure
+    # -- in practice this fires on almost every crawl, crash-looping the
+    # workers service. Build karakeep against nodejs_22 (LTS, unaffected)
+    # until nixpkgs/Node ship a fix. Revert once nodejs_24 is patched.
+    package = pkgs.karakeep.override { nodejs = pkgs.nodejs_22; };
+  };
+
+  # Keep as a general safety net (harmless if the above override makes it
+  # unnecessary for this specific bug).
+  systemd.services.karakeep-web.serviceConfig = {
+    Restart = "on-failure";
+    RestartSec = "5s";
+  };
+  systemd.services.karakeep-workers.serviceConfig = {
+    Restart = "on-failure";
+    RestartSec = "5s";
   };
 
 
