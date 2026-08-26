@@ -166,9 +166,10 @@
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;
 
-  # Open ports in the firewall.
-  networking.firewall.allowedTCPPorts = [ 25565 42069 60420];
-  networking.firewall.allowedUDPPorts = [ 25565 42069 60420];
+  # Open ports in the firewall. (80/443 for Caddy are declared in
+  # modules/self-hosting.nix, next to the service that needs them.)
+  networking.firewall.allowedTCPPorts = [ 25565 42069 60420 ];
+  networking.firewall.allowedUDPPorts = [ 25565 42069 60420 ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
 
