@@ -38,6 +38,7 @@
     pkgs.obsidian
     pkgs.shipwright
     pkgs.claude-code
+    pkgs.opencode
   ];
 
   # Bootloader.
