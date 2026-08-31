@@ -3,18 +3,22 @@
     "aquamarine": {
       "inputs": {
         "hyprutils": [
+          "toplevel",
           "hyprland",
           "hyprutils"
         ],
         "hyprwayland-scanner": [
+          "toplevel",
           "hyprland",
           "hyprwayland-scanner"
         ],
         "nixpkgs": [
+          "toplevel",
           "hyprland",
           "nixpkgs"
         ],
         "systems": [
+          "toplevel",
           "hyprland",
           "systems"
         ]
@@ -37,6 +41,7 @@
       "inputs": {
         "caelestia-shell": "caelestia-shell",
         "nixpkgs": [
+          "toplevel",
           "nixpkgs-unstable"
         ]
       },
@@ -57,10 +62,12 @@
     "caelestia-shell": {
       "inputs": {
         "caelestia-cli": [
+          "toplevel",
           "caelestia-cli"
         ],
         "m3shapes": "m3shapes",
         "nixpkgs": [
+          "toplevel",
           "caelestia-cli",
           "nixpkgs"
         ],
@@ -102,6 +109,7 @@
         "determinate-nixd-x86_64-linux": "determinate-nixd-x86_64-linux",
         "nix": "nix",
         "nixpkgs": [
+          "toplevel",
           "nixpkgs-unstable"
         ]
       },
@@ -205,6 +213,7 @@
     "flake-parts": {
       "inputs": {
         "nixpkgs-lib": [
+          "toplevel",
           "determinate",
           "nix",
           "nixpkgs"
@@ -281,10 +290,12 @@
       "inputs": {
         "flake-compat": "flake-compat",
         "gitignore": [
+          "toplevel",
           "determinate",
           "nix"
         ],
         "nixpkgs": [
+          "toplevel",
           "determinate",
           "nix",
           "nixpkgs"
@@ -306,6 +317,7 @@
     "home-manager": {
       "inputs": {
         "nixpkgs": [
+          "toplevel",
           "nixpkgs-unstable"
         ]
       },
@@ -326,6 +338,7 @@
     "home-manager_2": {
       "inputs": {
         "nixpkgs": [
+          "toplevel",
           "zen-browser",
           "nixpkgs"
         ]
@@ -347,14 +360,17 @@
     "hyprcursor": {
       "inputs": {
         "hyprlang": [
+          "toplevel",
           "hyprland",
           "hyprlang"
         ],
         "nixpkgs": [
+          "toplevel",
           "hyprland",
           "nixpkgs"
         ],
         "systems": [
+          "toplevel",
           "hyprland",
           "systems"
         ]
@@ -376,14 +392,17 @@
     "hyprgraphics": {
       "inputs": {
         "hyprutils": [
+          "toplevel",
           "hyprland",
           "hyprutils"
         ],
         "nixpkgs": [
+          "toplevel",
           "hyprland",
           "nixpkgs"
         ],
         "systems": [
+          "toplevel",
           "hyprland",
           "systems"
         ]
@@ -435,31 +454,38 @@
     "hyprland-guiutils": {
       "inputs": {
         "aquamarine": [
+          "toplevel",
           "hyprland",
           "aquamarine"
         ],
         "hyprgraphics": [
+          "toplevel",
           "hyprland",
           "hyprgraphics"
         ],
         "hyprlang": [
+          "toplevel",
           "hyprland",
           "hyprlang"
         ],
         "hyprtoolkit": "hyprtoolkit",
         "hyprutils": [
+          "toplevel",
           "hyprland",
           "hyprutils"
         ],
         "hyprwayland-scanner": [
+          "toplevel",
           "hyprland",
           "hyprwayland-scanner"
         ],
         "nixpkgs": [
+          "toplevel",
           "hyprland",
           "nixpkgs"
         ],
         "systems": [
+          "toplevel",
           "hyprland",
           "systems"
         ]
@@ -481,10 +507,12 @@
     "hyprland-protocols": {
       "inputs": {
         "nixpkgs": [
+          "toplevel",
           "hyprland",
           "nixpkgs"
         ],
         "systems": [
+          "toplevel",
           "hyprland",
           "systems"
         ]
@@ -506,14 +534,17 @@
     "hyprlang": {
       "inputs": {
         "hyprutils": [
+          "toplevel",
           "hyprland",
           "hyprutils"
         ],
         "nixpkgs": [
+          "toplevel",
           "hyprland",
           "nixpkgs"
         ],
         "systems": [
+          "toplevel",
           "hyprland",
           "systems"
         ]
@@ -535,36 +566,43 @@
     "hyprtoolkit": {
       "inputs": {
         "aquamarine": [
+          "toplevel",
           "hyprland",
           "hyprland-guiutils",
           "aquamarine"
         ],
         "hyprgraphics": [
+          "toplevel",
           "hyprland",
           "hyprland-guiutils",
           "hyprgraphics"
         ],
         "hyprlang": [
+          "toplevel",
           "hyprland",
           "hyprland-guiutils",
           "hyprlang"
         ],
         "hyprutils": [
+          "toplevel",
           "hyprland",
           "hyprland-guiutils",
           "hyprutils"
         ],
         "hyprwayland-scanner": [
+          "toplevel",
           "hyprland",
           "hyprland-guiutils",
           "hyprwayland-scanner"
         ],
         "nixpkgs": [
+          "toplevel",
           "hyprland",
           "hyprland-guiutils",
           "nixpkgs"
         ],
         "systems": [
+          "toplevel",
           "hyprland",
           "hyprland-guiutils",
           "systems"
@@ -587,10 +625,12 @@
     "hyprutils": {
       "inputs": {
         "nixpkgs": [
+          "toplevel",
           "hyprland",
           "nixpkgs"
         ],
         "systems": [
+          "toplevel",
           "hyprland",
           "systems"
         ]
@@ -612,10 +652,12 @@
     "hyprwayland-scanner": {
       "inputs": {
         "nixpkgs": [
+          "toplevel",
           "hyprland",
           "nixpkgs"
         ],
         "systems": [
+          "toplevel",
           "hyprland",
           "systems"
         ]
@@ -637,14 +679,17 @@
     "hyprwire": {
       "inputs": {
         "hyprutils": [
+          "toplevel",
           "hyprland",
           "hyprutils"
         ],
         "nixpkgs": [
+          "toplevel",
           "hyprland",
           "nixpkgs"
         ],
         "systems": [
+          "toplevel",
           "hyprland",
           "systems"
         ]
@@ -683,6 +728,7 @@
     "musnix": {
       "inputs": {
         "nixpkgs": [
+          "toplevel",
           "nixpkgs-unstable"
         ]
       },
@@ -745,6 +791,7 @@
     "nix-darwin": {
       "inputs": {
         "nixpkgs": [
+          "toplevel",
           "nixpkgs-unstable"
         ]
       },
@@ -971,6 +1018,7 @@
       "inputs": {
         "flake-compat": "flake-compat_2",
         "nixpkgs": [
+          "toplevel",
           "hyprland",
           "nixpkgs"
         ]
@@ -1010,6 +1058,7 @@
     "quickshell": {
       "inputs": {
         "nixpkgs": [
+          "toplevel",
           "caelestia-cli",
           "caelestia-shell",
           "nixpkgs"
@@ -1031,31 +1080,18 @@
     },
     "root": {
       "inputs": {
-        "caelestia-cli": "caelestia-cli",
-        "determinate": "determinate",
-        "flake-utils": "flake-utils",
-        "home-manager": "home-manager",
-        "hyprland": "hyprland",
-        "musnix": "musnix",
-        "nix-cachyos-kernel": "nix-cachyos-kernel",
-        "nix-darwin": "nix-darwin",
-        "nixos-hardware": "nixos-hardware",
-        "nixpkgs-stable": "nixpkgs-stable",
-        "nixpkgs-unstable": "nixpkgs-unstable",
-        "proton-cachyos": "proton-cachyos",
-        "rose-pine-hyprcursor": "rose-pine-hyprcursor",
-        "sops-nix": "sops-nix",
-        "zed-editor": "zed-editor",
-        "zen-browser": "zen-browser"
+        "toplevel": "toplevel"
       }
     },
     "rose-pine-hyprcursor": {
       "inputs": {
         "hyprlang": [
+          "toplevel",
           "hyprland",
           "hyprlang"
         ],
         "nixpkgs": [
+          "toplevel",
           "nixpkgs-unstable"
         ],
         "utils": "utils"
@@ -1077,6 +1113,7 @@
     "rust-overlay": {
       "inputs": {
         "nixpkgs": [
+          "toplevel",
           "zed-editor",
           "nixpkgs"
         ]
@@ -1098,6 +1135,7 @@
     "sops-nix": {
       "inputs": {
         "nixpkgs": [
+          "toplevel",
           "nixpkgs-unstable"
         ]
       },
@@ -1160,6 +1198,35 @@
         "type": "github"
       }
     },
+    "toplevel": {
+      "inputs": {
+        "caelestia-cli": "caelestia-cli",
+        "determinate": "determinate",
+        "flake-utils": "flake-utils",
+        "home-manager": "home-manager",
+        "hyprland": "hyprland",
+        "musnix": "musnix",
+        "nix-cachyos-kernel": "nix-cachyos-kernel",
+        "nix-darwin": "nix-darwin",
+        "nixos-hardware": "nixos-hardware",
+        "nixpkgs-stable": "nixpkgs-stable",
+        "nixpkgs-unstable": "nixpkgs-unstable",
+        "proton-cachyos": "proton-cachyos",
+        "rose-pine-hyprcursor": "rose-pine-hyprcursor",
+        "sops-nix": "sops-nix",
+        "zed-editor": "zed-editor",
+        "zen-browser": "zen-browser"
+      },
+      "locked": {
+        "path": "../../inputs",
+        "type": "path"
+      },
+      "original": {
+        "path": "../../inputs",
+        "type": "path"
+      },
+      "parent": []
+    },
     "utils": {
       "inputs": {
         "systems": "systems_3"
@@ -1181,26 +1248,32 @@
     "xdph": {
       "inputs": {
         "hyprland-protocols": [
+          "toplevel",
           "hyprland",
           "hyprland-protocols"
         ],
         "hyprlang": [
+          "toplevel",
           "hyprland",
           "hyprlang"
         ],
         "hyprutils": [
+          "toplevel",
           "hyprland",
           "hyprutils"
         ],
         "hyprwayland-scanner": [
+          "toplevel",
           "hyprland",
           "hyprwayland-scanner"
         ],
         "nixpkgs": [
+          "toplevel",
           "hyprland",
           "nixpkgs"
         ],
         "systems": [
+          "toplevel",
           "hyprland",
           "systems"
         ]
@@ -1245,6 +1318,7 @@
       "inputs": {
         "home-manager": "home-manager_2",
         "nixpkgs": [
+          "toplevel",
           "nixpkgs-unstable"
         ]
       },

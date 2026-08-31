@@ -1,1 +1,5 @@
 #current_system
+# operator-only overlay (personal-data scan patterns etc.) — must stay
+# untracked: the pattern regexes contain the personal strings themselves
+.opencode/
+

@@ -41,6 +41,10 @@
       url = "github:zed-industries/zed/v1.4.4";
       # inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
   };
   outputs = inputs: { };
 }

@@ -1,0 +1,15 @@
+# sops recipient config. Public keys only — safe to commit.
+keys:
+  # daniel's sops user key (~/.config/sops/age/keys.txt on each editing machine)
+  - &daniel age1hx9ja6rttztnq5yxczz8gju3jlaldahejp62vts5czuukykplvzq0avxx9
+  # /etc/ssh/ssh_host_ed25519_key.pub, converted: ssh-to-age < .pub
+  - &himemori age17rw8pa8wq9ggat6lwezzdjzdxscjecefr62ey4g3c6t9haff4dpsnsse60
+  # roboco: add its converted host pubkey here when reachable, then
+  # `sops updatekeys` any file it must decrypt.
+
+creation_rules:
+  - path_regex: secrets/himemori\.yaml$
+    key_groups:
+      - age:
+          - *daniel
+          - *himemori

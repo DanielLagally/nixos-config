@@ -1,6 +1,9 @@
-{ pkgs, config, ... }:
+{ inputs, pkgs, config, ... }:
 
 {
+  imports = [
+    inputs.sops-nix.nixosModules.sops
+  ];
   # karakeep
   services.karakeep = {
     enable = true;
@@ -35,12 +38,37 @@
   # its src/cli.rs), so an ad hoc `cargo run -- server` for local dev
   # testing doesn't collide with this long-running instance on the same
   # machine.
+  # Secrets (sops-nix). The encrypted file is tracked in the repo
+  # (secrets/himemori.yaml, recipients in .sops.yaml); this host decrypts
+  # at activation using its SSH ed25519 host key. The domain/email appear
+  # in tracked files ONLY as ${placeholder} tokens — real values never
+  # enter the nix store, because templates are rendered at activation,
+  # not at eval.
+  # Values must be referenced through config.sops.templates.* paths, never
+  # interpolated at eval time.
+  sops = {
+    age.sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
+    defaultSopsFile = ../secrets/himemori.yaml;
+    secrets."caddy/email" = { };
+    secrets."caddy/domain" = { };
+    templates."Caddyfile" = {
+      content = ''
+        {
+          email ${config.sops.placeholder."caddy/email"}
+        }
+
+        ${config.sops.placeholder."caddy/domain"} {
+          reverse_proxy localhost:18080
+        }
+      '';
+      owner = "caddy";
+      mode = "0400";
+    };
+  };
+
   services.caddy = {
     enable = true;
-    email = "daniel.lagally@gmail.com";
-    virtualHosts."ruminate.duckdns.org".extraConfig = ''
-      reverse_proxy localhost:18080
-    '';
+    configFile = config.sops.templates."Caddyfile".path;
   };
 
   # 80/443 for Caddy's ACME HTTP-01 challenge + HTTPS itself. Kept here
