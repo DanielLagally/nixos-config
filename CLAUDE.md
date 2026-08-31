@@ -14,9 +14,9 @@ Nix copies only tracked/staged files when evaluating this repo as a flake. A git
 
 Values from `secrets/*.yaml` may only surface via `config.sops.templates.*` placeholders (`config.sops.placeholder."..."`), rendered at activation into `/run/secrets/rendered/`. Interpolating a secret into an eval-time option puts the plaintext into the world-readable nix store. Caddy consumes the rendered file through `services.caddy.configFile` (the module symlinks `/etc/caddy/caddy_config` → `/run/secrets/rendered/Caddyfile`).
 
-### Multi-flake lock layout (root → machines/himemori → ../../inputs)
+### Multi-flake lock layout (root → machines/<host> → ../../inputs)
 
-Three lock files: root `flake.lock`, `machines/himemori/flake.lock` (tracked), `inputs/flake.lock`. After adding an input to `inputs/flake.nix`: run `nix flake lock ./inputs`, then `nix flake update himemori` — the root lock records the full resolved subtree for the path input and is otherwise stale, giving a misleading `error: attribute 'sops-nix' missing` at eval even though every child lock is correct. Never eval `machines/<host>#…` directly: it forks a stray per-machine lock file.
+Two lock files only: root `flake.lock` and `inputs/flake.lock`. **Never create `machines/<host>/flake.lock` files** — this repo deliberately has none; the root lock records the full resolved subtree for each per-machine path input. After adding an input to `inputs/flake.nix`: run `nix flake lock ./inputs`, then `nix flake update <host>` to refresh the subtree in the root lock. Skipping the refresh gives a misleading `error: attribute 'X' missing` at eval even though `inputs/flake.lock` is correct. Do NOT eval `machines/<host>#…` directly — it forks a stray per-machine lock file (delete it if that happens).
 
 ### Root-owned `.git/objects/*` subdirs
 
