@@ -51,6 +51,7 @@ in
     pkgs.yazi
     pkgs.htop
     pkgs.mpv
+    pkgs.imv
     pkgs.pavucontrol
     pkgs.git
     pkgs.jujutsu
